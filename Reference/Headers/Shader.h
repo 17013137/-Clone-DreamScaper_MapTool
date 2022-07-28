@@ -29,7 +29,7 @@ public:
 private:
 	ID3DX11Effect*				m_pEffect = nullptr;
 	vector<PASSDESC*>			m_Passes;
-	
+
 
 public:
 	static CShader* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext, const _tchar* pShaderFilePath, const D3D11_INPUT_ELEMENT_DESC* pElements, _uint iNumElements);

@@ -38,17 +38,19 @@ HRESULT CHouse_03::NativeConstruct(void * pArg)
 
 	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(_float(rand() % 64 + 1), 3.f, _float(rand() % 64 + 1), 1.f));
 
-
-
 	return S_OK;
 }
 
-void CHouse_03::Tick(_double TimeDelta)
+_int CHouse_03::Tick(_double TimeDelta)
 {
 	__super::Tick(TimeDelta);
 
+	if (m_Dead == true)
+		return 1;
+
 	m_pSphereCom->Update(m_pTransformCom->Get_WorldMatrix());
 
+	return 0;
 }
 
 void CHouse_03::LateTick(_double TimeDelta)
@@ -59,11 +61,7 @@ void CHouse_03::LateTick(_double TimeDelta)
 	{
 		m_pRendererCom->Add_RenderGroup(CRenderer::GROUP_NONBLEND, this);
 
-#ifdef _DEBUG
-		m_pRendererCom->Add_DebugComponent(m_pSphereCom);
-#endif // _DEBUG
 	}
-	
 }
 
 HRESULT CHouse_03::Render()
@@ -90,6 +88,10 @@ HRESULT CHouse_03::Render()
 			return E_FAIL;
 	}	
 
+#ifdef _DEBUG
+	m_pSphereCom->Render();
+#endif // _DEBUG
+
 	return S_OK;
 }
 
@@ -112,7 +114,7 @@ HRESULT CHouse_03::SetUp_Components()
 
 	/* For.Com_AABB */
 	ColliderDesc.vPosition = _float3(0.f, 0.0f, 0.f);
-	ColliderDesc.fRadius = 1.f;
+	ColliderDesc.fRadius = 3.f;
 
 	if (FAILED(__super::SetUp_Components(TEXT("Com_Sphere"), LEVEL_STATIC, TEXT("Prototype_Component_Collider_SPHERE"), (CComponent**)&m_pSphereCom, &ColliderDesc)))
 		return E_FAIL;
@@ -168,7 +170,6 @@ void CHouse_03::Free()
 	__super::Free();	
 	
 	Safe_Release(m_pSphereCom);
-
 	Safe_Release(m_pShaderCom);
 	Safe_Release(m_pModelCom);
 	Safe_Release(m_pRendererCom);

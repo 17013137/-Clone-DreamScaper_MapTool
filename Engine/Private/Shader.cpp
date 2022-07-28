@@ -32,7 +32,7 @@ HRESULT CShader::NativeConstruct_Prototype(const _tchar * pShaderFilePath, const
 #endif
 
 	ID3DBlob*			pCode = nullptr;
-	ID3DBlob*			pErrorMsg = nullptr;	
+	ID3DBlob*			pErrorMsg = nullptr;
 
 	/* hlsl파일을 번역하여 메모리상에 올려둔다.  */
 	if (FAILED(D3DCompileFromFile(pShaderFilePath, nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, nullptr, "fx_5_0", iFlag, 0, &pCode, &pErrorMsg)))
@@ -62,11 +62,11 @@ HRESULT CShader::NativeConstruct_Prototype(const _tchar * pShaderFilePath, const
 		pPassDesc->pEffectPass->GetDesc(&PassDesc);
 
 		if (FAILED(m_pDevice->CreateInputLayout(pElements, iNumElements, PassDesc.pIAInputSignature, PassDesc.IAInputSignatureSize, &pPassDesc->pInputLayout)))
-			return E_FAIL;	
+			return E_FAIL;
 
 		m_Passes.push_back(pPassDesc);
 	}
-	
+
 	return S_OK;
 }
 
@@ -78,13 +78,13 @@ HRESULT CShader::NativeConstruct(void * pArg)
 HRESULT CShader::Set_RawValue(const char * pConstantName, const void * pData, _uint iDataByteLength)
 {
 	if (nullptr == m_pEffect)
-		return E_FAIL;	
+		return E_FAIL;
 
 	ID3DX11EffectVariable*		pVariable = m_pEffect->GetVariableByName(pConstantName);
 	if (nullptr == pVariable)
 		return E_FAIL;
 
-	return pVariable->SetRawValue(pData, 0, iDataByteLength);	
+	return pVariable->SetRawValue(pData, 0, iDataByteLength);
 }
 
 HRESULT CShader::Set_ShaderResourceView(const char * pConstantName, ID3D11ShaderResourceView * pSRV)
@@ -110,7 +110,7 @@ HRESULT CShader::Set_ShaderResourceView(const char * pConstantName, ID3D11Shader
 		return E_FAIL;
 	}
 
-	if(FAILED(pSRVariable->SetResource(pSRV)))
+	if (FAILED(pSRVariable->SetResource(pSRV)))
 	{
 		MSG_BOX(TEXT("Failed == SetResource "));
 		return E_FAIL;
@@ -166,7 +166,7 @@ void CShader::Free()
 		Safe_Release(pPassDesc->pInputLayout);
 		// Safe_Release(pPassDesc->pEffectPass);
 
-		if(false == m_isCloned)
+		if (false == m_isCloned)
 			Safe_Delete(pPassDesc);
 	}
 	m_Passes.clear();

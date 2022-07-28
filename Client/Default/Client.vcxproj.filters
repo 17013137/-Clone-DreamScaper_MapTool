@@ -297,6 +297,24 @@
     <ClInclude Include="..\Public\House_00.h">
       <Filter>02. GameObject\04.MapObject\House\House_00</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\House_01.h">
+      <Filter>02. GameObject\04.MapObject\House\House_01</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\House_02.h">
+      <Filter>02. GameObject\04.MapObject\House\House_02</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\House_03.h">
+      <Filter>02. GameObject\04.MapObject\House\House_03</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\House_04.h">
+      <Filter>02. GameObject\04.MapObject\House\House_04</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\CampGroundRoad.h">
+      <Filter>02. GameObject\04.MapObject\Road\CampGroundRoad</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\ParkingRoad.h">
+      <Filter>02. GameObject\04.MapObject\Road\ParkingRoad</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -352,6 +370,24 @@
     </ClCompile>
     <ClCompile Include="..\Private\House_00.cpp">
       <Filter>02. GameObject\04.MapObject\House\House_00</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\House_01.cpp">
+      <Filter>02. GameObject\04.MapObject\House\House_01</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\House_02.cpp">
+      <Filter>02. GameObject\04.MapObject\House\House_02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\House_03.cpp">
+      <Filter>02. GameObject\04.MapObject\House\House_03</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\House_04.cpp">
+      <Filter>02. GameObject\04.MapObject\House\House_04</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\CampGroundRoad.cpp">
+      <Filter>02. GameObject\04.MapObject\Road\CampGroundRoad</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\ParkingRoad.cpp">
+      <Filter>02. GameObject\04.MapObject\Road\ParkingRoad</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

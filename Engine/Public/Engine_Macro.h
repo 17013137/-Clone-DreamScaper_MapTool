@@ -28,6 +28,7 @@
 	pInstance->Release();}														\
 	}();
 
+#define MSGBOX(MESSAGE) MessageBox(0, TEXT(MESSAGE), TEXT("System Message"), MB_OK);
 
 #define NO_COPY(CLASSNAME)									\
 		private:											\

@@ -76,7 +76,7 @@ void CImgui_Manager::MapMenu_Contents()
 		if (ImGui::TreeNode("Object")) {
 			//ImGui::PushItemWidth();
 			
-			if (ImGui::ListBox("", &selectCnt, PrototypeList, IM_ARRAYSIZE(PrototypeList), 5)) {
+			if (ImGui::ListBox("", &selectCnt, PrototypeList, IM_ARRAYSIZE(PrototypeList), 10)) {
 			}
 			ImGui::TreePop();
 

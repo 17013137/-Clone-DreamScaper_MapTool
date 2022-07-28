@@ -18,6 +18,9 @@ public:
 public:
 	virtual HRESULT Render();
 
+public:
+	virtual _float Compute_Height(class CTransform* pTransform, _fvector vPosition);
+
 protected: /* For.VertexBuffer */
 	ID3D11Buffer*				m_pVB = nullptr;
 	D3D11_BUFFER_DESC			m_VBDesc;
@@ -27,6 +30,7 @@ protected: /* For.VertexBuffer */
 	_uint						m_iStride = 0;
 	_uint						m_iNumVertices = 0;
 
+	_float3*					m_pVerticesPos = nullptr;
 protected: /* For.IndexBuffer */
 	ID3D11Buffer*				m_pIB = nullptr;
 	D3D11_BUFFER_DESC			m_IBDesc;

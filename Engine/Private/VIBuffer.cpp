@@ -21,6 +21,7 @@ CVIBuffer::CVIBuffer(const CVIBuffer & rhs)
 	, m_iNumVBuffers(rhs.m_iNumVBuffers)
 	, m_eFormat(rhs.m_eFormat)
 	, m_eTopology(rhs.m_eTopology)
+	, m_pVerticesPos(rhs.m_pVerticesPos)
 {
 	Safe_AddRef(m_pVB);
 	Safe_AddRef(m_pIB);
@@ -54,7 +55,7 @@ HRESULT CVIBuffer::Render()
 		0
 	};
 
-	m_pDeviceContext->IASetVertexBuffers(0, m_iNumVBuffers, pVertexBuffers, iStrides, iOffset);	
+	m_pDeviceContext->IASetVertexBuffers(0, m_iNumVBuffers, pVertexBuffers, iStrides, iOffset);
 	m_pDeviceContext->IASetIndexBuffer(m_pIB, m_eFormat, 0);
 	m_pDeviceContext->IASetPrimitiveTopology(m_eTopology);
 
@@ -63,12 +64,18 @@ HRESULT CVIBuffer::Render()
 	return S_OK;
 }
 
+_float CVIBuffer::Compute_Height(CTransform * pTransform, _fvector vPosition)
+{
+
+	return _float(0.f);
+}
+
 HRESULT CVIBuffer::Create_VertexBuffer()
 {
 	if (nullptr == m_pDevice)
 		return E_FAIL;
 
-	return m_pDevice->CreateBuffer(&m_VBDesc, &m_VBSubResourceData, &m_pVB);	
+	return m_pDevice->CreateBuffer(&m_VBDesc, &m_VBSubResourceData, &m_pVB);
 }
 
 HRESULT CVIBuffer::Create_IndexBuffer()
@@ -82,6 +89,10 @@ HRESULT CVIBuffer::Create_IndexBuffer()
 void CVIBuffer::Free()
 {
 	__super::Free();
+
+	if (false == m_isCloned)
+		Safe_Delete_Array(m_pVerticesPos);
+
 
 	Safe_Release(m_pVB);
 	Safe_Release(m_pIB);

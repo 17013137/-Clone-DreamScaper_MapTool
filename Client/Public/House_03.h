@@ -22,7 +22,7 @@ private:
 public:
 	virtual HRESULT NativeConstruct_Prototype() override;
 	virtual HRESULT NativeConstruct(void* pArg);
-	virtual void Tick(_double TimeDelta) override;
+	virtual _int Tick(_double TimeDelta) override;
 	virtual void LateTick(_double TimeDelta) override;
 	virtual HRESULT Render() override;
 
