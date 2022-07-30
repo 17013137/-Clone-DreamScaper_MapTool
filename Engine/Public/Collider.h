@@ -40,6 +40,7 @@ public:
 	_bool Collsion_OBB(CCollider* pTargetCollider);
 	void Update(_fmatrix WorldMatrix);
 	_vector Intersect_Ray();
+	void Set_Color(_float3 flag) { m_fColor = flag; }
 
 public:
 	void Set_isCollison(_bool flag) { m_isCollision = flag; }
@@ -59,6 +60,8 @@ private:
 	BoundingSphere*				m_pSPHERE = nullptr;
 	BoundingSphere*				m_pSPHEREInWorld = nullptr;
 	
+	_float3 m_fColor = _float3(0.f, 1.f, 0.f);
+
 #ifdef _DEBUG
 private:
 	BasicEffect*								m_pBasicEffect = nullptr;

@@ -135,6 +135,10 @@ HRESULT CLoader::Loading_ForGamePlayLevel()
 		CBed::Create(m_pDevice, m_pDeviceContext))))
 		return E_FAIL;
 
+	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_NaviFlag"),
+		CNaviFlag::Create(m_pDevice, m_pDeviceContext))))
+		return E_FAIL;
+
 	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_House_00"),
 		CHouse_00::Create(m_pDevice, m_pDeviceContext))))
 		return E_FAIL;

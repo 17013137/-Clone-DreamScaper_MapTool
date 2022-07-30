@@ -30,12 +30,10 @@ private:
 
 	CRenderer*				m_pRenderer = nullptr;
 
-
-
 public:
 	HRESULT Open_Level(LEVEL eLevelIndex);
 	HRESULT Ready_Prototype_GameObject();
-	HRESULT Ready_Prototype_Component();	
+	HRESULT Ready_Prototype_Component();
 
 public:
 	static CMainApp* Create();

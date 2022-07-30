@@ -192,6 +192,7 @@
     <ClInclude Include="..\Public\LoadingBar.h" />
     <ClInclude Include="..\Public\LoadingLogo.h" />
     <ClInclude Include="..\Public\MainApp.h" />
+    <ClInclude Include="..\Public\NaviFlag.h" />
     <ClInclude Include="..\Public\ParkingRoad.h" />
     <ClInclude Include="..\Public\Sword.h" />
     <ClInclude Include="..\Public\Terrain.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="..\Private\LoadingBar.cpp" />
     <ClCompile Include="..\Private\LoadingLogo.cpp" />
     <ClCompile Include="..\Private\MainApp.cpp" />
+    <ClCompile Include="..\Private\NaviFlag.cpp" />
     <ClCompile Include="..\Private\ParkingRoad.cpp" />
     <ClCompile Include="..\Private\Sword.cpp" />
     <ClCompile Include="..\Private\Terrain.cpp" />

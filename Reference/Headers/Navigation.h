@@ -1,57 +1,50 @@
 #pragma once
 
-#include "Component.h"
+#include "Base.h"
 
 BEGIN(Engine)
 
-class ENGINE_DLL CNavigation final : public CComponent
+class CNavigation final : public CBase
 {
-public:
-	typedef struct tagNaviDesc
-	{
-		class CTransform* pParent = nullptr;
-		_uint	iCurrentIndex = -1;		
-	}NAVIDESC;
-
+	DECLARE_SINGLETON(CNavigation)
 private:
-	CNavigation(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext);
-	CNavigation(const CNavigation& rhs);
+	CNavigation();
 	virtual ~CNavigation() = default;
 
 public:
-	virtual HRESULT NativeConstruct_Prototype(const _tchar* pNaviDataFilePath);
-	virtual HRESULT NativeConstruct(void* pArg) override;
+	HRESULT Initialize(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext, const _tchar* pNavigationData, class CTransform* pTranform);
+	_bool Move_OnNavigation(_float3* vPosition, _uint* pCurrentIndex, _fvector PlayerDir, _bool isJump = false);
+	_bool Sky_Move_OnNavi(_fvector vPosition, _uint* pCurrentIndex);
+	_int Search_MyIndex(_fvector vPosition);
+
+#ifdef _DEBUG
+public:
+	HRESULT Render();
+	HRESULT Render_Cell(_int iIndex);
+
+#endif // _DEBUG
 
 public:
-	_bool Move_OnNavigation(_fvector vPosition);
-
-#ifdef _DEBUG
-public:	
-	virtual HRESULT Render() override;
-#endif // _DEBUG
-
+	HRESULT Push_Cell(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext, CELLDESC* Cell);
+	HRESULT Remove_LastCell();
+	vector<class CCell*> Get_Cells() { return m_Cells; }
 
 private:
-	vector<class CCell*>			m_Cells;
-	typedef vector<class CCell*>	CELLS;
+	vector<class CCell*>				m_Cells;
+	typedef vector<class CCell*>		CELLS;
+	class CTransform*			m_pTransform = nullptr;
 
 #ifdef _DEBUG
 private:
-	class CVIBuffer_Triangle*		m_pVIBuffer = nullptr;
-	class CShader*					m_pShader = nullptr;
-
+	class CShader*				m_pDebugShader = nullptr;
 #endif // _DEBUG
-
-private:
-	/*네비메시를 사용하는 객체가 존재하고 있는 셀의 인덱스.*/
-	NAVIDESC						m_NaviDesc;
 
 private:
 	HRESULT SetUp_Neighbor();
+	_int m_NowIndex = 0;
+	_int m_PrevIndex = 1;
 
 public:
-	static CNavigation* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext, const _tchar* pNaviDataFilePath);
-	virtual CComponent* Clone(void* pArg) override;
 	virtual void Free() override;
 };
 

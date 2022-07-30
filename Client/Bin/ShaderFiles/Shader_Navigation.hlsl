@@ -1,13 +1,13 @@
 
-cbuffer	RenderingPipeLine
+cbuffer Matrices
 {
-	matrix			g_WorldMatrix;
-	matrix			g_ViewMatrix;
-	matrix			g_ProjMatrix;
+	float4x4		g_WorldMatrix, g_ViewMatrix, g_ProjMatrix;
+}
+
+cbuffer CellColor
+{
+	float4		g_vColor;
 };
-
-
-vector		g_vColor;
 
 struct VS_IN
 {
@@ -21,17 +21,26 @@ struct VS_OUT
 	float4		vColor : COLOR0;
 };
 
-VS_OUT VS_MAIN_RECT(VS_IN In)
+
+
+VS_OUT VS_MAIN(VS_IN In)
 {
-	VS_OUT			Out = (VS_OUT)0;
+	VS_OUT		Out;
 
 	matrix			matWV, matWVP;
 
 	matWV = mul(g_WorldMatrix, g_ViewMatrix);
 	matWVP = mul(matWV, g_ProjMatrix);
 
-	Out.vPosition = mul(vector(In.vPosition, 1.f), matWVP);
-	Out.vColor = In.vColor;
+	float3		vPosition = In.vPosition;
+
+
+
+	if (all(g_vColor == float4(1.f, 0.f, 0.f, 1.f)))
+		vPosition.y += 0.1f;
+
+	Out.vPosition = mul(vector(vPosition, 1.f), matWVP);
+	Out.vColor = In.vColor * g_vColor;
 
 	return Out;
 }
@@ -44,48 +53,52 @@ struct PS_IN
 
 struct PS_OUT
 {
-	vector		vColor : SV_TARGET0;
+	vector			vColor : SV_TARGET0;
 };
 
-PS_OUT PS_MAIN_RECT(PS_IN In)
+PS_OUT PS_MAIN(PS_IN In)
 {
-	PS_OUT		Out = (PS_OUT)0;
+	PS_OUT			Out;
 
-	Out.vColor = g_vColor;
+	Out.vColor = In.vColor;
 
 	return Out;
 }
 
-BlendState	NonBlending
+
+RasterizerState	RS_Default
+{
+	FillMode = Solid;
+	FrontCounterClockwise = false;
+	CullMode = back;
+};
+
+
+BlendState BS_NonBlend
 {
 	BlendEnable[0] = false;
 };
 
-DepthStencilState  ZTestAndWriteState
+DepthStencilState DSS_Default
 {
 	DepthEnable = true;
 	DepthWriteMask = all;
 	DepthFunc = less_equal;
 };
 
-RasterizerState FillMode_Solid
+technique11 DefaultTechnique
 {
-	FillMode = Solid;
-	CullMode = back;
-	FrontCounterClockwise = false;
-};
-
-
-technique11		DefaultTechnique
-{
-	pass Rect
+	pass DefaultRendering
 	{
-		SetBlendState(NonBlending, vector(0.f, 0.f, 0.f, 0.f), 0xffffffff);
-		SetDepthStencilState(ZTestAndWriteState, 0);
-		SetRasterizerState(FillMode_Solid);
+		SetRasterizerState(RS_Default);
+		SetDepthStencilState(DSS_Default, 0);
+		SetBlendState(BS_NonBlend, vector(1.f, 1.f, 1.f, 1.f), 0xffffffff);
 
-		VertexShader = compile vs_5_0 VS_MAIN_RECT();
+		VertexShader = compile vs_5_0 VS_MAIN();
 		GeometryShader = NULL;
-		PixelShader = compile ps_5_0 PS_MAIN_RECT();
-	}	
+		PixelShader = compile ps_5_0 PS_MAIN();
+	}
+
 }
+
+

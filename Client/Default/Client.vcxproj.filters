@@ -223,6 +223,9 @@
     <Filter Include="02. GameObject\04.MapObject\Road\ParkingRoad">
       <UniqueIdentifier>{9e40e40c-7601-4a8a-8697-bd5159dedf19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. GameObject\NaviFlag">
+      <UniqueIdentifier>{ef66214f-5850-48f3-8e9e-944aa42023df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -315,6 +318,9 @@
     <ClInclude Include="..\Public\ParkingRoad.h">
       <Filter>02. GameObject\04.MapObject\Road\ParkingRoad</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\NaviFlag.h">
+      <Filter>02. GameObject\NaviFlag</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -388,6 +394,9 @@
     </ClCompile>
     <ClCompile Include="..\Private\ParkingRoad.cpp">
       <Filter>02. GameObject\04.MapObject\Road\ParkingRoad</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\NaviFlag.cpp">
+      <Filter>02. GameObject\NaviFlag</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

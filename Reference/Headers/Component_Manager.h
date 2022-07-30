@@ -8,7 +8,7 @@
 #include "Transform.h"
 #include "VIBuffer_Rect.h"
 #include "VIBuffer_Terrain.h"
-
+#include "VIBuffer_Line.h"
 
 /* 컴포넌트들의 원형을 모아둔다. */
 

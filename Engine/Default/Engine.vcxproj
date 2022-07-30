@@ -212,6 +212,7 @@
     <ClCompile Include="..\Private\Timer_Manager.cpp" />
     <ClCompile Include="..\Private\Transform.cpp" />
     <ClCompile Include="..\private\VIBuffer.cpp" />
+    <ClCompile Include="..\Private\VIBuffer_Line.cpp" />
     <ClCompile Include="..\private\VIBuffer_Rect.cpp" />
     <ClCompile Include="..\Private\VIBuffer_Terrain.cpp" />
     <ClCompile Include="..\Private\VIBuffer_Triangle.cpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="..\Public\Timer_Manager.h" />
     <ClInclude Include="..\Public\Transform.h" />
     <ClInclude Include="..\public\VIBuffer.h" />
+    <ClInclude Include="..\Public\VIBuffer_Line.h" />
     <ClInclude Include="..\public\VIBuffer_Rect.h" />
     <ClInclude Include="..\Public\VIBuffer_Terrain.h" />
     <ClInclude Include="..\Public\VIBuffer_Triangle.h" />

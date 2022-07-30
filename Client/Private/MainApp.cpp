@@ -58,7 +58,6 @@ HRESULT CMainApp::NativeConstruct()
 	if (FAILED(Open_Level(LEVEL_LOGO)))
 		return E_FAIL;
 
-
 	return S_OK;
 }
 
@@ -193,6 +192,7 @@ HRESULT CMainApp::Ready_Prototype_Component()
 
 	return S_OK;
 }
+
 
 
 CMainApp * Client::CMainApp::Create()

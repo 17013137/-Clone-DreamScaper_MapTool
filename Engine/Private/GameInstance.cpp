@@ -15,7 +15,9 @@ CGameInstance::CGameInstance()
 	, m_pImgui_Manager(CImgui_Manager::GetInstance())
 	, m_pPicking(CPicking::GetInstance())
 	, m_pFrustum(CFrustum::GetInstance())
+	, m_pNavigation(CNavigation::GetInstance())
 {
+	Safe_AddRef(m_pNavigation);
 	Safe_AddRef(m_pFrustum);
 	Safe_AddRef(m_pPicking);
 	Safe_AddRef(m_pImgui_Manager);
@@ -307,6 +309,38 @@ const _float3 & CGameInstance::Get_WorldRayPos()
 	return m_pPicking->Get_WorldRayPos();
 }
 
+HRESULT CGameInstance::Initialize_Navigation(ID3D11Device * pDevice, ID3D11DeviceContext * pDeviceContext, const _tchar * pNavigationData, CTransform * pTransform)
+{
+	if (nullptr == m_pNavigation)
+		return E_FAIL;
+
+	return m_pNavigation->Initialize(pDevice, pDeviceContext, pNavigationData, pTransform);
+}
+
+HRESULT CGameInstance::Render_Navigation()
+{
+	if (nullptr == m_pNavigation)
+		return E_FAIL;
+
+#ifdef _DEBUG
+	m_pNavigation->Render();
+#endif // _DEBUG
+
+	return S_OK;
+}
+
+HRESULT CGameInstance::Render_NavigationCell(_uint iIndex)
+{
+	if (nullptr == m_pNavigation)
+		return E_FAIL;
+
+#ifdef _DEBUG
+	m_pNavigation->Render_Cell(iIndex);
+#endif // _DEBUG
+
+	return S_OK;
+}
+
 
 void CGameInstance::OnOffgui()
 {
@@ -358,6 +392,8 @@ void CGameInstance::Release_Engine()
 
 	CFrustum::GetInstance()->DestroyInstance();
 
+	CNavigation::GetInstance()->DestroyInstance();
+
 	CGraphic_Device::GetInstance()->DestroyInstance();
 }
 
@@ -365,6 +401,7 @@ void CGameInstance::Free()
 {
 	Safe_Release(m_pImgui_Manager);
 	Safe_Release(m_pLight_Manager);
+	Safe_Release(m_pNavigation);
 	Safe_Release(m_pFrustum);
 	Safe_Release(m_pPicking);
 	Safe_Release(m_pPipeLine);

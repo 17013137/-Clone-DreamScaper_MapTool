@@ -38,6 +38,13 @@ HRESULT CTerrain::NativeConstruct(void * pArg)
 		return E_FAIL;
 	m_pAABBCom->Update(m_pTransformCom->Get_WorldMatrix());
 
+	CGameInstance* pGameInstance = GET_INSTANCE(CGameInstance);
+
+	if (FAILED(pGameInstance->Initialize_Navigation(m_pDevice, m_pDeviceContext, TEXT(""), m_pTransformCom)))
+		return E_FAIL;
+
+	RELEASE_INSTANCE(CGameInstance);
+
 	return S_OK;
 }
 
@@ -45,11 +52,11 @@ _int CTerrain::Tick(_double TimeDelta)
 {
 	__super::Tick(TimeDelta);
 
-	if (CKeyMgr::Get_Instance()->Key_Pressing('1')) {
+	if (CKeyMgr::Get_Instance()->Key_Pressing('1') || CKeyMgr::Get_Instance()->Key_Pressing(VK_NUMPAD1)) {
 		m_pTransformCom->Go_Y(TimeDelta*0.1f);
 	}
 
-	if (CKeyMgr::Get_Instance()->Key_Pressing('2')) {
+	if (CKeyMgr::Get_Instance()->Key_Pressing('2') || CKeyMgr::Get_Instance()->Key_Pressing(VK_NUMPAD2)) {
 		m_pTransformCom->Go_Y(-TimeDelta*0.1f);
 	}
 	m_pAABBCom->Update(m_pTransformCom->Get_WorldMatrix());
@@ -82,7 +89,12 @@ HRESULT CTerrain::Render()
 	if (FAILED(m_pVIBufferCom->Render()))
 		return E_FAIL;
 
+#ifdef _DEBUG
+	CGameInstance*		pGameInstance = GET_INSTANCE(CGameInstance);
 	m_pAABBCom->Render();
+	pGameInstance->Render_Navigation();
+	RELEASE_INSTANCE(CGameInstance);
+#endif // _DEBUG
 
 	return S_OK;
 }

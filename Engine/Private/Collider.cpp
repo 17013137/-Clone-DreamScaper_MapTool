@@ -46,7 +46,6 @@ HRESULT CCollider::NativeConstruct(void * pArg)
 
 	if (nullptr != pArg)
 		memcpy(&ColliderDesc, pArg, sizeof(COLLIDERDESC));
-
 	else
 	{
 		ColliderDesc.vPosition = _float3(0.f, 0.f, 0.f);
@@ -200,10 +199,11 @@ _vector CCollider::Intersect_Ray()
 	return _vector();
 }
 
+
 #ifdef _DEBUG
 HRESULT CCollider::Render()
 {
-	_vector		vColor = m_isCollision == true ? XMVectorSet(1.f, 0.f, 0.f, 1.f) : XMVectorSet(0.f, 1.f, 0.f, 1.f);
+	_vector		vColor = XMLoadFloat3(&m_fColor);
 
 	_matrix		ViewMatrix, ProjMatrix;
 

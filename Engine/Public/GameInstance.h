@@ -11,6 +11,7 @@
 #include "Imgui_Manager.h"
 #include "Picking.h"
 #include "Frustum.h"
+#include "Navigation.h"
 
 /* 클라이언트에 보여줘야할 인터페이스를 보관하고. 보여준다. */
 
@@ -74,6 +75,11 @@ public: /*For.Picking   */
 	const _float3& Get_WorldRay();
 	const _float3& Get_WorldRayPos();
 
+public: /* For.Navigation */
+	HRESULT Initialize_Navigation(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext, const _tchar* pNavigationData, CTransform* pTransform);
+	HRESULT Render_Navigation();
+	HRESULT Render_NavigationCell(_uint iIndex);
+
 public:
 	void OnOffgui();
 	HRESULT RenderImgui();
@@ -92,6 +98,7 @@ private:
 	CImgui_Manager*				m_pImgui_Manager = nullptr;
 	CFrustum*					m_pFrustum = nullptr;
 	CPicking*					m_pPicking = nullptr;
+	CNavigation*				m_pNavigation = nullptr;
 
 public:
 	static void Release_Engine();

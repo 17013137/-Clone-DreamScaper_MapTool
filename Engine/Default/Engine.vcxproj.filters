@@ -136,6 +136,9 @@
     <ClCompile Include="..\Private\VIBuffer_Triangle.cpp">
       <Filter>01.Utility\03.Component\Model\Triangle</Filter>
     </ClCompile>
+    <ClCompile Include="..\Private\VIBuffer_Line.cpp">
+      <Filter>01.Utility\03.Component\Model\Line</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Engine_Defines.h">
@@ -288,6 +291,9 @@
     <ClInclude Include="..\Public\VIBuffer_Triangle.h">
       <Filter>01.Utility\03.Component\Model\Triangle</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\VIBuffer_Line.h">
+      <Filter>01.Utility\03.Component\Model\Line</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="99.Defines">
@@ -415,6 +421,9 @@
     </Filter>
     <Filter Include="01.Utility\03.Component\Model\Triangle">
       <UniqueIdentifier>{79a3b60e-84ed-4403-a2e2-ad31944bad89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Utility\03.Component\Model\Line">
+      <UniqueIdentifier>{9dfa48b1-75c2-4cf4-8b8b-7e5692a22e8a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
