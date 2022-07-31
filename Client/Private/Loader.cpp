@@ -101,7 +101,9 @@ HRESULT CLoader::Loading_ForGamePlayLevel()
 	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_ParkingRoad"),
 		CModel::Create(m_pDevice, m_pDeviceContext, CModel::TYPE_NONANIM, "../Resources/Model/Environment/Road/", "ParkingRoad.fbx", PivotMatrix))))
 		return E_FAIL;
-
+	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_LandScape"),
+		CModel::Create(m_pDevice, m_pDeviceContext, CModel::TYPE_NONANIM, "../Resources/Model/Environment/LandScape/", "Tubing_Landscape.fbx", PivotMatrix))))
+		return E_FAIL;
 
 	lstrcpy(m_szLoading, TEXT("모델을 로드중입니다. "));
 
@@ -159,6 +161,9 @@ HRESULT CLoader::Loading_ForGamePlayLevel()
 		return E_FAIL;
 	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_CampgroundRoad"),
 		CCampGroundRoad::Create(m_pDevice, m_pDeviceContext))))
+		return E_FAIL;
+	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_LandScape"),
+		CLandScape::Create(m_pDevice, m_pDeviceContext))))
 		return E_FAIL;
 
 

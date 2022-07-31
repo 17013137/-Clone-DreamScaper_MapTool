@@ -226,6 +226,9 @@
     <Filter Include="02. GameObject\NaviFlag">
       <UniqueIdentifier>{ef66214f-5850-48f3-8e9e-944aa42023df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. GameObject\04.MapObject\LandScape">
+      <UniqueIdentifier>{3c12daef-b3ad-42cb-a887-e07e7df7a576}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -321,6 +324,9 @@
     <ClInclude Include="..\Public\NaviFlag.h">
       <Filter>02. GameObject\NaviFlag</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\LandScape.h">
+      <Filter>02. GameObject\04.MapObject\LandScape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -397,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="..\Private\NaviFlag.cpp">
       <Filter>02. GameObject\NaviFlag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\LandScape.cpp">
+      <Filter>02. GameObject\04.MapObject\LandScape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

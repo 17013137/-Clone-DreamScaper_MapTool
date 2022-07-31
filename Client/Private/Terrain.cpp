@@ -43,6 +43,8 @@ HRESULT CTerrain::NativeConstruct(void * pArg)
 	if (FAILED(pGameInstance->Initialize_Navigation(m_pDevice, m_pDeviceContext, TEXT(""), m_pTransformCom)))
 		return E_FAIL;
 
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(0.f, 0.f, 0.f, 1.f));
+
 	RELEASE_INSTANCE(CGameInstance);
 
 	return S_OK;
@@ -59,6 +61,8 @@ _int CTerrain::Tick(_double TimeDelta)
 	if (CKeyMgr::Get_Instance()->Key_Pressing('2') || CKeyMgr::Get_Instance()->Key_Pressing(VK_NUMPAD2)) {
 		m_pTransformCom->Go_Y(-TimeDelta*0.1f);
 	}
+
+
 	m_pAABBCom->Update(m_pTransformCom->Get_WorldMatrix());
 	return 0;
 }

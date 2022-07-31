@@ -33,9 +33,6 @@ HRESULT CNaviFlag::NativeConstruct(void * pArg)
 
 	if (FAILED(SetUp_Components()))
 		return E_FAIL;	
-	m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), -0.5f);
-
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(10.f, 0.f, 10.f, 1.f));
 
 	m_pSphereCom->Update(m_pTransformCom->Get_WorldMatrix());
 	return S_OK;

@@ -462,6 +462,10 @@ _bool CImgui_Manager::LoadNavi()
 	for (auto& iter : NaviCell) {
 		for (int j = 0; j < 3; j++) {
 			CGameObject* NaviMesh = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"NaviFlag", L"Prototype_GameObject_NaviFlag");
+			if (NaviMesh == nullptr) {
+				MSGBOX("LOAD FAILED !!!!");
+				return S_OK;
+			}
 			NaviMesh->Get_Transform()->Set_State(CTransform::STATE_POSITION, XMVectorSet(iter->Get_fPoint(j).x, iter->Get_fPoint(j).y, iter->Get_fPoint(j).z, 1.f));
 		}
 
@@ -472,7 +476,7 @@ _bool CImgui_Manager::LoadNavi()
 		m_Cell.push_back(celldesc);
 	}
 
-
+	MSGBOX("GOOD !");
 	return S_OK;
 }
 
@@ -573,7 +577,6 @@ void CImgui_Manager::InitWin32(HWND hWnd)
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
-
 	ImGui_ImplWin32_Init(hWnd);
 }
 
