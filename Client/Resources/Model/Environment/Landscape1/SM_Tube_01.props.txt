@@ -1,0 +1,50 @@
+Materials[3] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Diner/Material/M_Metal_Snow.M_Metal_Snow'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/Tubing/Material/M_Red_Snow1.M_Red_Snow1'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/Tubing/Material/M_Black_Snow.M_Black_Snow'
+}
+SourceModels[0] = {}
+StaticMaterials[3] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Diner/Material/M_Metal_Snow.M_Metal_Snow'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 285.599, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Tubing/Material/M_Red_Snow1.M_Red_Snow1'
+        MaterialSlotName = Red
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 268.096, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Tubing/Material/M_Black_Snow.M_Black_Snow'
+        MaterialSlotName = Black
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 346.034, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=0.207588, Y=-0.0575333, Z=31.7744 }
+    BoxExtent = { X=86.6345, Y=86.4584, Z=31.7744 }
+    SphereRadius = 87.042
+}

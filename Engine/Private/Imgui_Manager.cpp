@@ -165,10 +165,11 @@ _bool CImgui_Manager::TilePicking(_int index)
 		flag = true;
 		//char strtemp[MAX_PATH] = "";
 		//strcpy_s(strtemp, PrototypeList[0]);
-		_tchar		szFullPath[MAX_PATH] = TEXT("");
-		MultiByteToWideChar(CP_ACP, 0, PrototypeList[index], (int)strlen(PrototypeList[index]), szFullPath, MAX_PATH);
+		//_tchar		szFullPath[MAX_PATH] = TEXT("");
+		//MultiByteToWideChar(CP_ACP, 0, PrototypeList[index], (int)strlen(PrototypeList[index]), szFullPath, MAX_PATH);
+
 		CGameObject* Obj = nullptr;
-		if ((Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"ObjectList", szFullPath, &PickedPos)) != nullptr) {
+		if ((Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"ObjectList", L"Prototype_GameObject_AllObject", &index)) != nullptr) {
 			CTransform* ObjTrans = Obj->Get_Transform();
 			PickedPos = XMVectorSetW(PickedPos, 1.f);
 			ObjTrans->Set_State(CTransform::STATE_POSITION, PickedPos);
@@ -530,6 +531,11 @@ _bool CImgui_Manager::LoadData()
 		return false;
 	}
 
+	if (INVALID_HANDLE_VALUE == hFile) {
+		MSGBOX("FAILED !!!");
+		return false;
+	}
+
 	while (true)
 	{
 		SAVEDESC SaveData;
@@ -538,10 +544,7 @@ _bool CImgui_Manager::LoadData()
 		if (0 == dwByte)
 			break;
 
-		_tchar		szFullPath[MAX_PATH] = TEXT("");
-		MultiByteToWideChar(CP_ACP, 0, PrototypeList[SaveData.TagIndex], (int)strlen(PrototypeList[SaveData.TagIndex]), szFullPath, MAX_PATH);
-
-		CGameObject* Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"Object", szFullPath);
+		CGameObject* Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"Object", L"Prototype_GameObject_AllObject", &SaveData.TagIndex);
 
 		DATADESC* Data = new DATADESC;
 		Data->TagIndex = SaveData.TagIndex;

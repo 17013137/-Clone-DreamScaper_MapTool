@@ -104,6 +104,9 @@ HRESULT CLoader::Loading_ForGamePlayLevel()
 	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_LandScape"),
 		CModel::Create(m_pDevice, m_pDeviceContext, CModel::TYPE_NONANIM, "../Resources/Model/Environment/LandScape/", "Tubing_Landscape.fbx", PivotMatrix))))
 		return E_FAIL;
+	if (FAILED(pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_LandScape_Boss"),
+		CModel::Create(m_pDevice, m_pDeviceContext, CModel::TYPE_NONANIM, "../Resources/Model/Environment/LandScape1/", "Landscape_Boss.fbx", PivotMatrix))))
+		return E_FAIL;
 
 	lstrcpy(m_szLoading, TEXT("모델을 로드중입니다. "));
 
@@ -165,8 +168,12 @@ HRESULT CLoader::Loading_ForGamePlayLevel()
 	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_LandScape"),
 		CLandScape::Create(m_pDevice, m_pDeviceContext))))
 		return E_FAIL;
-
-
+	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_LandScape_Boss"),
+		CLandScape_Boss::Create(m_pDevice, m_pDeviceContext))))
+		return E_FAIL;
+	if (FAILED(pGameInstance->Add_Prototype(TEXT("Prototype_GameObject_AllObject"),
+		CAllObject::Create(m_pDevice, m_pDeviceContext))))
+		return E_FAIL;
 	lstrcpy(m_szLoading, TEXT("로딩이 완료되었습니다.. "));
 	m_isFinished = true;
 

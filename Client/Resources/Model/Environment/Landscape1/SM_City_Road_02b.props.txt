@@ -1,0 +1,50 @@
+Materials[3] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Road_Lines_Yellow.M_Road_Lines_Yellow'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Road.M_Road'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Road_Lines_White.M_Road_Lines_White'
+}
+SourceModels[0] = {}
+StaticMaterials[3] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Road_Lines_Yellow.M_Road_Lines_Yellow'
+        MaterialSlotName = RoadLines_Yellow
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 7073.83, 1610.02, 110.816, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Road.M_Road'
+        MaterialSlotName = Road
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 7916.08, 6603.13, 1740.31, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Road_Lines_White.M_Road_Lines_White'
+        MaterialSlotName = RoadLines_White
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 5051.01, 1556.63, 89.804, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=724.505, Y=-2197.68, Z=0.3 }
+    BoxExtent = { X=5000.07, Y=2792.29, Z=0.3 }
+    SphereRadius = 5726.92
+}

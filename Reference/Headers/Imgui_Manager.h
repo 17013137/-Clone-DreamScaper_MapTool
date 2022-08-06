@@ -5,11 +5,7 @@
 BEGIN(Engine)
 
 class CGameObject;
-
-static const char* PrototypeList[]{ "Prototype_GameObject_Bed", "Prototype_GameObject_House_00", "Prototype_GameObject_House_01", "Prototype_GameObject_House_02" , "Prototype_GameObject_House_04",
-"Prototype_GameObject_ParkingRoad", "Prototype_GameObject_CampgroundRoad", "Prototype_GameObject_LandScape" };
-
-
+static const char* PrototypeList[]{ "House_00", "House_01", "House_02" , "House_03" };
 
 class ENGINE_DLL CImgui_Manager final : public CBase
 {

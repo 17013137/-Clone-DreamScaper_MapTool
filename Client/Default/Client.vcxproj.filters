@@ -229,6 +229,9 @@
     <Filter Include="02. GameObject\04.MapObject\LandScape">
       <UniqueIdentifier>{3c12daef-b3ad-42cb-a887-e07e7df7a576}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. GameObject\04.MapObject\LandScape\Base">
+      <UniqueIdentifier>{2d9b77eb-c85f-44f5-802f-b3e0ef8edd05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -327,6 +330,12 @@
     <ClInclude Include="..\Public\LandScape.h">
       <Filter>02. GameObject\04.MapObject\LandScape</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\LandScape_Boss.h">
+      <Filter>02. GameObject\04.MapObject\LandScape\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Public\AllObject.h">
+      <Filter>02. GameObject\04.MapObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -406,6 +415,12 @@
     </ClCompile>
     <ClCompile Include="..\Private\LandScape.cpp">
       <Filter>02. GameObject\04.MapObject\LandScape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\LandScape_Boss.cpp">
+      <Filter>02. GameObject\04.MapObject\LandScape\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\AllObject.cpp">
+      <Filter>02. GameObject\04.MapObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
