@@ -1,0 +1,38 @@
+Materials[2] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Rock/Material/M_Rock_Basalt_01.M_Rock_Basalt_01'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/Water/Material/M_Env_Water_Campground_Event.M_Env_Water_Campground_Event'
+}
+SourceModels[0] = {}
+StaticMaterials[2] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Rock/Material/M_Rock_Basalt_01.M_Rock_Basalt_01'
+        MaterialSlotName = Rock
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 6980.16, 6473.29, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Water/Material/M_Env_Water_Campground_Event.M_Env_Water_Campground_Event'
+        MaterialSlotName = Water
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 0, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=14.2609, Y=168.575, Z=-869.925 }
+    BoxExtent = { X=451.746, Y=888.536, Z=975.695 }
+    SphereRadius = 1252.34
+}

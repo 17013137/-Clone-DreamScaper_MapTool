@@ -1,0 +1,50 @@
+Materials[3] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Metal_Green.M_City_Metal_Green'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Glass_Dark.M_Glass_Dark'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Yellow.M_City_Yellow'
+}
+SourceModels[0] = {}
+StaticMaterials[3] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Metal_Green.M_City_Metal_Green'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 488.249, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Glass_Dark.M_Glass_Dark'
+        MaterialSlotName = Glass
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 691.342, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Yellow.M_City_Yellow'
+        MaterialSlotName = Gold
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 244.585, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-1.52588e-05, Y=0, Z=327.706 }
+    BoxExtent = { X=43.9244, Y=75.032, Z=327.706 }
+    SphereRadius = 331.944
+}

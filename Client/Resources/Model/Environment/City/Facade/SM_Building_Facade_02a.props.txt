@@ -1,0 +1,86 @@
+Materials[6] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Inst.M_City_Wall_Inst'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Window_Glass.M_City_Window_Glass'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Metal_Dark.M_City_Metal_Dark'
+    Materials[3] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Brick.M_City_Wall_Brick'
+    Materials[4] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Inst.M_City_Wall_Inst'
+    Materials[5] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Inst.M_City_Wall_Inst'
+}
+SourceModels[0] = {}
+StaticMaterials[6] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Inst.M_City_Wall_Inst'
+        MaterialSlotName = Wall
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2021.44, 22579.7, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Window_Glass.M_City_Window_Glass'
+        MaterialSlotName = Glass
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2420.41, 75.88, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Metal_Dark.M_City_Metal_Dark'
+        MaterialSlotName = Black
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2621.78, 123.537, 0, 0 }
+        }
+    }
+    StaticMaterials[3] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Brick.M_City_Wall_Brick'
+        MaterialSlotName = Brick
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1649.43, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[4] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Inst.M_City_Wall_Inst'
+        MaterialSlotName = White
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 6487.6, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[5] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Inst.M_City_Wall_Inst'
+        MaterialSlotName = Wall_Dark
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2040.76, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-644.415, Y=-711.048, Z=617.966 }
+    BoxExtent = { X=721.585, Y=733.162, Z=647.66 }
+    SphereRadius = 1206.4
+}

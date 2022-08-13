@@ -1,0 +1,86 @@
+Materials[6] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Wall.M_Backhill_Wall'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal.M_Backhill_Metal'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Cloth.M_Backhill_Cloth'
+    Materials[3] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal_Green.M_Backhill_Metal_Green'
+    Materials[4] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal.M_Backhill_Metal'
+    Materials[5] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Glass.M_Backhill_Glass'
+}
+SourceModels[0] = {}
+StaticMaterials[6] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Wall.M_Backhill_Wall'
+        MaterialSlotName = Wall
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2501.91, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal.M_Backhill_Metal'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2805.76, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Cloth.M_Backhill_Cloth'
+        MaterialSlotName = Red
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2516.23, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[3] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal_Green.M_Backhill_Metal_Green'
+        MaterialSlotName = Patina
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2615.13, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[4] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal.M_Backhill_Metal'
+        MaterialSlotName = Black
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2672.48, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[5] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Glass.M_Backhill_Glass'
+        MaterialSlotName = Glass
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2582.47, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-730.84, Y=3.05176e-05, Z=482.996 }
+    BoxExtent = { X=872.007, Y=392.068, Z=483.004 }
+    SphereRadius = 1065.23
+}

@@ -155,6 +155,7 @@ public:
 	HRESULT MyLookSet(_fvector vLook);
 	HRESULT MyLook(_vector vTargetPos, _float Speed, _double Timedelta);
 	HRESULT MyAirLook(_vector vTargetPos, _float Speed, _double Timedelta);
+	HRESULT LookAt(_vector vTargetPos);
 	HRESULT Reset_AxisY();
 
 	HRESULT BulletShoot(_fvector _Look, _fvector _Right, _fvector muzzle);

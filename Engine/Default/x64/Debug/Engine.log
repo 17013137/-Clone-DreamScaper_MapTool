@@ -1,0 +1,6 @@
+﻿  Imgui_Manager.cpp
+c:\users\ehddj\onedrive\바탕 화면\navimaptool_영훈\engine\private\imgui_manager.cpp(724): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\ehddj\onedrive\바탕 화면\navimaptool_영훈\engine\private\imgui_manager.cpp(725): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\ehddj\onedrive\바탕 화면\navimaptool_영훈\engine\private\imgui_manager.cpp(726): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Engine.vcxproj -> C:\Users\ehddj\OneDrive\바탕 화면\NaviMapTool_영훈\Engine\Default\..\Bin\Engine.dll
+  Engine.vcxproj -> ..\Bin\Engine.pdb (Full PDB)

@@ -1,0 +1,50 @@
+Materials[3] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Sidewalk.M_Backhill_Sidewalk'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Sidewalk.M_Backhill_Sidewalk'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Sidewalk.M_Backhill_Sidewalk'
+}
+SourceModels[0] = {}
+StaticMaterials[3] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Sidewalk.M_Backhill_Sidewalk'
+        MaterialSlotName = Border
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 625.661, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Sidewalk.M_Backhill_Sidewalk'
+        MaterialSlotName = LightGrey
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 573.895, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Sidewalk.M_Backhill_Sidewalk'
+        MaterialSlotName = Grey
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 663.987, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=150, Y=0, Z=15.2867 }
+    BoxExtent = { X=150, Y=216.073, Z=15.2867 }
+    SphereRadius = 262.652
+}

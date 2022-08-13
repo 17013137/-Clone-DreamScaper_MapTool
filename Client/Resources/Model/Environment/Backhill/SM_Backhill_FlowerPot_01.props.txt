@@ -1,0 +1,50 @@
+Materials[3] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_FlowerPot_Ground.M_FlowerPot_Ground'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_FlowerPot_Concrete.M_FlowerPot_Concrete'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/Foliage/Trees/Material/M_City_Leaf_Master_Inst.M_City_Leaf_Master_Inst'
+}
+SourceModels[0] = {}
+StaticMaterials[3] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_FlowerPot_Ground.M_FlowerPot_Ground'
+        MaterialSlotName = Ground
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 832.376, 330.147, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_FlowerPot_Concrete.M_FlowerPot_Concrete'
+        MaterialSlotName = Concrete
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 943.05, 354.711, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Foliage/Trees/Material/M_City_Leaf_Master_Inst.M_City_Leaf_Master_Inst'
+        MaterialSlotName = Leaf
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 862.969, 31.0776, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=0, Y=0, Z=80.7603 }
+    BoxExtent = { X=130.097, Y=130.097, Z=80.7603 }
+    SphereRadius = 130.936
+}

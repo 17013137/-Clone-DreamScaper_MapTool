@@ -1,0 +1,50 @@
+Materials[3] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Signs/Materials/Dynamic/M_Sign_RoadBlock_Red.M_Sign_RoadBlock_Red'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/Signs/Materials/Dynamic/M_Sign_RoadBlock_Black.M_Sign_RoadBlock_Black'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/Signs/Materials/Dynamic/M_Sign_RoadBlock_White.M_Sign_RoadBlock_White'
+}
+SourceModels[0] = {}
+StaticMaterials[3] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Signs/Materials/Dynamic/M_Sign_RoadBlock_Red.M_Sign_RoadBlock_Red'
+        MaterialSlotName = Red
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 220.312, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Signs/Materials/Dynamic/M_Sign_RoadBlock_Black.M_Sign_RoadBlock_Black'
+        MaterialSlotName = Black
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 305.571, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Signs/Materials/Dynamic/M_Sign_RoadBlock_White.M_Sign_RoadBlock_White'
+        MaterialSlotName = White
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 231.673, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=0, Y=0, Z=47.5408 }
+    BoxExtent = { X=32.926, Y=32.926, Z=47.5408 }
+    SphereRadius = 57.8294
+}

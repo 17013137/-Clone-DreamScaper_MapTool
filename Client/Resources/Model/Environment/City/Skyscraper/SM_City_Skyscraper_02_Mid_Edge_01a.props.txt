@@ -1,0 +1,26 @@
+Materials[1] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Brick.M_City_Wall_Brick'
+}
+SourceModels[0] = {}
+StaticMaterials[1] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Brick.M_City_Wall_Brick'
+        MaterialSlotName = Brick
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1121.87, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=53.7712, Y=-99.19, Z=700.957 }
+    BoxExtent = { X=165.445, Y=99.19, Z=699.043 }
+    SphereRadius = 724.988
+}

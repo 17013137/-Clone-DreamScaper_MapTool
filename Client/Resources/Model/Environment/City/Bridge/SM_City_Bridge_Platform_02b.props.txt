@@ -1,0 +1,38 @@
+Materials[2] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Metal_Green.M_City_Metal_Green'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_FireEscape_Masked.M_City_FireEscape_Masked'
+}
+SourceModels[0] = {}
+StaticMaterials[2] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Metal_Green.M_City_Metal_Green'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 509.9, 39.348, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_FireEscape_Masked.M_City_FireEscape_Masked'
+        MaterialSlotName = Rail
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 353.94, 187.418, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=75, Y=-150.002, Z=50.25 }
+    BoxExtent = { X=75, Y=149.998, Z=50.25 }
+    SphereRadius = 175.07
+}

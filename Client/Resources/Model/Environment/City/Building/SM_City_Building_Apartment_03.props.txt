@@ -1,0 +1,86 @@
+Materials[6] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_BlueGreen.M_City_Wall_BlueGreen'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Trim_Green.M_City_Wall_Trim_Green'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Black.M_City_Black'
+    Materials[3] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Window_Glass.M_City_Window_Glass'
+    Materials[4] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Concrete.M_City_Concrete'
+    Materials[5] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Window_Glass.M_City_Window_Glass'
+}
+SourceModels[0] = {}
+StaticMaterials[6] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_BlueGreen.M_City_Wall_BlueGreen'
+        MaterialSlotName = Wall
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1745.89, 3040.72, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Trim_Green.M_City_Wall_Trim_Green'
+        MaterialSlotName = Trim
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 239.223, 2867.42, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Black.M_City_Black'
+        MaterialSlotName = Black
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2173.55, 3301.38, 0, 0 }
+        }
+    }
+    StaticMaterials[3] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Window_Glass.M_City_Window_Glass'
+        MaterialSlotName = Glass
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2433.85, 3084.42, 0, 0 }
+        }
+    }
+    StaticMaterials[4] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Concrete.M_City_Concrete'
+        MaterialSlotName = Concrete
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 653.901, 2946.42, 0, 0 }
+        }
+    }
+    StaticMaterials[5] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Window_Glass.M_City_Window_Glass'
+        MaterialSlotName = Glass_02
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 728.59, 4160.75, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-203.876, Y=-230.503, Z=664.043 }
+    BoxExtent = { X=475.359, Y=665.918, Z=664.043 }
+    SphereRadius = 1053.74
+}

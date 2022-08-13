@@ -32,7 +32,7 @@ HRESULT CNaviFlag::NativeConstruct(void * pArg)
 		return E_FAIL;
 
 	if (FAILED(SetUp_Components()))
-		return E_FAIL;	
+		return E_FAIL;
 
 	m_pSphereCom->Update(m_pTransformCom->Get_WorldMatrix());
 	return S_OK;
@@ -98,7 +98,7 @@ HRESULT CNaviFlag::SetUp_Components()
 	/* For.Com_Shader */
 	if (FAILED(__super::SetUp_Components(TEXT("Com_Shader"), LEVEL_STATIC, TEXT("Prototype_Component_Shader_VtxNonAnim"), (CComponent**)&m_pShaderCom)))
 		return E_FAIL;
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Bed"), (CComponent**)&m_pModelCom)))
+	if (FAILED(__super::SetUp_Components(TEXT("Com_Model"), LEVEL_STATIC, TEXT("Prototype_Component_Model_Bed"), (CComponent**)&m_pModelCom)))
 		return E_FAIL;
 
 	CCollider::COLLIDERDESC			ColliderDesc;

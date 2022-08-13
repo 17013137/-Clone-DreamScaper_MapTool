@@ -1,0 +1,38 @@
+Materials[2] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/EventRoom/Material/M_Wood_03.M_Wood_03'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/EventRoom/Material/M_Rope_01.M_Rope_01'
+}
+SourceModels[0] = {}
+StaticMaterials[2] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/EventRoom/Material/M_Wood_03.M_Wood_03'
+        MaterialSlotName = Wood
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 711.392, 144.431, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/EventRoom/Material/M_Rope_01.M_Rope_01'
+        MaterialSlotName = Rope
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 708.145, 168.25, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=0, Y=0, Z=74.828 }
+    BoxExtent = { X=17.1477, Y=18.1194, Z=75.15 }
+    SphereRadius = 76.9179
+}

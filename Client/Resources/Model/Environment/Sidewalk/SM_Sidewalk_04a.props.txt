@@ -1,0 +1,38 @@
+Materials[2] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Sidewalk_Light.M_City_Sidewalk_Light'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Sidewalk.M_City_Sidewalk'
+}
+SourceModels[0] = {}
+StaticMaterials[2] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Sidewalk_Light.M_City_Sidewalk_Light'
+        MaterialSlotName = LightGrey
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 7382.94, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Sidewalk.M_City_Sidewalk'
+        MaterialSlotName = Grey
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 13273, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=300, Y=250, Z=15.2867 }
+    BoxExtent = { X=300, Y=250, Z=15.2867 }
+    SphereRadius = 390.812
+}

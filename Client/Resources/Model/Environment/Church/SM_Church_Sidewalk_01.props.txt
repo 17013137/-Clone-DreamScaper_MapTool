@@ -1,0 +1,26 @@
+Materials[1] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Concrete_Sidewalk.M_Church_Concrete_Sidewalk'
+}
+SourceModels[0] = {}
+StaticMaterials[1] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Concrete_Sidewalk.M_Church_Concrete_Sidewalk'
+        MaterialSlotName = Concrete
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1646.65, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-1089.56, Y=-2130.17, Z=3.6945 }
+    BoxExtent = { X=1973.99, Y=1711.61, Z=11.6945 }
+    SphereRadius = 2272.96
+}

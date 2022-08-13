@@ -1,0 +1,62 @@
+Materials[4] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Metal_Dark.M_City_Metal_Dark'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Road_Lines_White_UV2.M_Road_Lines_White_UV2'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Concrete.M_City_Concrete'
+    Materials[3] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Road_Highway.M_Road_Highway'
+}
+SourceModels[0] = {}
+StaticMaterials[4] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Metal_Dark.M_City_Metal_Dark'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2272.29, 2195.22, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Road_Lines_White_UV2.M_Road_Lines_White_UV2'
+        MaterialSlotName = White
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2330.39, 73.7968, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Concrete.M_City_Concrete'
+        MaterialSlotName = Concrete
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2977.55, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[3] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_Road_Highway.M_Road_Highway'
+        MaterialSlotName = Road
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2490.83, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-204.196, Y=-1077.86, Z=-57.7603 }
+    BoxExtent = { X=734.753, Y=1077.9, Z=171.24 }
+    SphereRadius = 1292.16
+}

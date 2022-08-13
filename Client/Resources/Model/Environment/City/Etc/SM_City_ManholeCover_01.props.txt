@@ -1,0 +1,38 @@
+Materials[2] =
+{
+    Materials[0] = Material3'/Game/Environment/Assets/Vehicle/Materials/Emissive.Emissive'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_ManholeCover_01.M_City_ManholeCover_01'
+}
+SourceModels[0] = {}
+StaticMaterials[2] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = Material3'/Game/Environment/Assets/Vehicle/Materials/Emissive.Emissive'
+        MaterialSlotName = Black
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 158.979, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_ManholeCover_01.M_City_ManholeCover_01'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 141.511, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=0, Y=0, Z=1.69078 }
+    BoxExtent = { X=60.6042, Y=60.6042, Z=1.69078 }
+    SphereRadius = 60.6277
+}

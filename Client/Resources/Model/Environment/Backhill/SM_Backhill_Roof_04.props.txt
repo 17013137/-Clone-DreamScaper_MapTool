@@ -1,0 +1,26 @@
+Materials[1] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal_Snow.M_Backhill_Metal_Snow'
+}
+SourceModels[0] = {}
+StaticMaterials[1] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal_Snow.M_Backhill_Metal_Snow'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 305.555, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-4.95911e-05, Y=0, Z=102.888 }
+    BoxExtent = { X=49.7638, Y=49.7638, Z=102.888 }
+    SphereRadius = 118.437
+}

@@ -833,6 +833,27 @@ HRESULT CTransform::MyAirLook(_vector vTargetPos, _float Speed, _double Timedelt
 	return S_OK;
 }
 
+HRESULT CTransform::LookAt(_vector vTargetPos)
+{
+	_vector vPosition = Get_State(STATE_POSITION);
+	_float3 vScale = Get_Scale();
+
+	_vector vLook = vTargetPos - vPosition;
+	_vector vAxisY = XMVectorSet(0.f, 1.f, 0.f, 0.f);
+	_vector vRight = XMVector3Cross(vAxisY, vLook);
+	_vector vUp = XMVector3Cross(vLook, vRight);
+
+	vRight = XMVector3Normalize(vRight) * vScale.x;
+	vUp = XMVector3Normalize(vUp) * vScale.y;
+	vLook = XMVector3Normalize(vLook) * vScale.z;
+
+	Set_State(STATE_RIGHT, vRight);
+	Set_State(STATE_UP, vUp);
+	Set_State(STATE_LOOK, vLook);
+
+	return S_OK;
+}
+
 HRESULT CTransform::Reset_AxisY()
 {
 	_vector vRight = Get_State(STATE_RIGHT);

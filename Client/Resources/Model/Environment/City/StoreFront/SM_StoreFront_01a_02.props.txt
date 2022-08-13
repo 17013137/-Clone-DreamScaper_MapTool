@@ -1,0 +1,146 @@
+Materials[11] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Emissive_Yellow.Emissive_Yellow'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Sign_Red.M_City_Sign_Red'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Black.M_City_Black'
+    Materials[3] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Metal.M_City_Metal'
+    Materials[4] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Window_Glass.M_City_Window_Glass'
+    Materials[5] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall.M_City_Wall'
+    Materials[6] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Emissive_Neon_White_01.Emissive_Neon_White_01'
+    Materials[7] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Emissive_Red.Emissive_Red'
+    Materials[8] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Emissive_Neon.Emissive_Neon'
+    Materials[9] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Yellow.M_City_Yellow'
+    Materials[10] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Window_Glass.M_City_Window_Glass'
+}
+SourceModels[0] = {}
+StaticMaterials[11] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Emissive_Yellow.Emissive_Yellow'
+        MaterialSlotName = Emissive
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2081.69, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Sign_Red.M_City_Sign_Red'
+        MaterialSlotName = Red
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1912.03, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Black.M_City_Black'
+        MaterialSlotName = Black
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1917.13, 685.058, 0, 0 }
+        }
+    }
+    StaticMaterials[3] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Metal.M_City_Metal'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1939.48, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[4] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Window_Glass.M_City_Window_Glass'
+        MaterialSlotName = Glass
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1972.92, 106.309, 0, 0 }
+        }
+    }
+    StaticMaterials[5] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall.M_City_Wall'
+        MaterialSlotName = Wall
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1937.2, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[6] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Emissive_Neon_White_01.Emissive_Neon_White_01'
+        MaterialSlotName = Neon_White
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1893.35, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[7] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Emissive_Red.Emissive_Red'
+        MaterialSlotName = Neon_Red
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1930.55, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[8] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Emissive_Neon.Emissive_Neon'
+        MaterialSlotName = Green_Neon
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2015.93, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[9] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Yellow.M_City_Yellow'
+        MaterialSlotName = Yellow
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1946.83, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[10] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Window_Glass.M_City_Window_Glass'
+        MaterialSlotName = Glass_Light
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2105.75, 92.7702, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=542.425, Y=-711.159, Z=319.494 }
+    BoxExtent = { X=823.575, Y=713.762, Z=319.523 }
+    SphereRadius = 1135.7
+}

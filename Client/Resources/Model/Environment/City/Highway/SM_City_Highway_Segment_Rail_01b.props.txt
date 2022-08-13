@@ -1,0 +1,38 @@
+Materials[2] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Metal_Dark_Nightmare.M_City_Metal_Dark_Nightmare'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Wall_NIghtmare_Pillar.M_City_Wall_NIghtmare_Pillar'
+}
+SourceModels[0] = {}
+StaticMaterials[2] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Metal_Dark_Nightmare.M_City_Metal_Dark_Nightmare'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2708.85, 797.479, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Wall_NIghtmare_Pillar.M_City_Wall_NIghtmare_Pillar'
+        MaterialSlotName = Concrete
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2763.09, 787.221, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=1000, Y=-27.6499, Z=58.2397 }
+    BoxExtent = { X=1000, Y=30.6499, Z=58.2397 }
+    SphereRadius = 1002.08
+}

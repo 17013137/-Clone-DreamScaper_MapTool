@@ -10,6 +10,7 @@ cbuffer Matrices
 
 texture2D			g_DiffuseTexture;
 texture2D			g_NormalTexture;
+float g_Alpha;
 
 sampler DefaultSampler = sampler_state {
 	filter = min_mag_mip_linear;
@@ -125,8 +126,38 @@ PS_OUT PS_MAIN_MODEL(PS_IN_MODEL In)
 	return Out;
 }
 
+PS_OUT PS_MAIN_MODEL_WIREFRAME(PS_IN_MODEL In)
+{
+	PS_OUT			Out = (PS_OUT)0;
+
+	vector		vMtrlDiffuse = g_DiffuseTexture.Sample(DefaultSampler, In.vTexUV);
+	vector		vNormalDesc = g_NormalTexture.Sample(DefaultSampler, In.vTexUV);
+
+	float3		vNormal = vNormalDesc.xyz * 2.f - 1.f;
+
+	float3x3	WorldMatrix = float3x3(In.vTangent, In.vBinormal, In.vNormal.xyz);
+
+	vNormal = normalize(mul(vNormal, WorldMatrix));
+	
+	vMtrlDiffuse.x = 0.f;
+	vMtrlDiffuse.y = 1.f;
+	vMtrlDiffuse.z = 0.f;
+
+	Out.vDiffuse = vMtrlDiffuse;
+	Out.vNormal = vector(vNormal * 0.5f + 0.5f, 0.f);
+	Out.vDepth = vector(In.vProjPos.z / In.vProjPos.w, In.vProjPos.w / 300.0f, 0.f, 0.f);
+	
+
+	if (vMtrlDiffuse.a < 0.1f)
+		discard;
+
+	return Out;
+}
+
+
 technique11 DefaultTechnique
 {	
+	//0
 	pass Model
 	{
 		SetRasterizerState(RS_Default);
@@ -138,6 +169,7 @@ technique11 DefaultTechnique
 		PixelShader = compile ps_5_0 PS_MAIN_MODEL();
 	}
 	
+	//1
 	pass Model_Socket
 	{
 		SetRasterizerState(RS_Default);
@@ -147,6 +179,18 @@ technique11 DefaultTechnique
 		VertexShader = compile vs_5_0 VS_MAIN_MODEL_SOCKET();
 		GeometryShader = NULL;
 		PixelShader = compile ps_5_0 PS_MAIN_MODEL();
+	}
+
+	//2
+	pass AlphaModel
+	{
+		SetRasterizerState(RS_WireFrame);
+		SetDepthStencilState(DSS_Default, 0);
+		SetBlendState(BS_NonBlend, vector(1.f, 1.f, 1.f, 1.f), 0xffffffff);
+
+		VertexShader = compile vs_5_0 VS_MAIN_MODEL();
+		GeometryShader = NULL;
+		PixelShader = compile ps_5_0 PS_MAIN_MODEL_WIREFRAME();
 	}
 }
 

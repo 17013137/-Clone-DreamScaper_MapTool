@@ -1,0 +1,74 @@
+Materials[5] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal.M_Backhill_Metal'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Black.M_Backhill_Black'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Glass.M_Backhill_Glass'
+    Materials[3] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Brick.M_Backhill_Brick'
+    Materials[4] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Trim.M_Backhill_Trim'
+}
+SourceModels[0] = {}
+StaticMaterials[5] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal.M_Backhill_Metal'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 874.467, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Black.M_Backhill_Black'
+        MaterialSlotName = Black
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1351.71, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Glass.M_Backhill_Glass'
+        MaterialSlotName = Glass
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1289.54, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[3] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Brick.M_Backhill_Brick'
+        MaterialSlotName = Wall
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2049.49, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[4] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Trim.M_Backhill_Trim'
+        MaterialSlotName = Pillar
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1246.54, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-796.725, Y=0, Z=303.246 }
+    BoxExtent = { X=838.275, Y=435.417, Z=303.254 }
+    SphereRadius = 983.052
+}

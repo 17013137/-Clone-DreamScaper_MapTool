@@ -1,0 +1,74 @@
+Materials[5] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_Metal.M_Sign_RoadBlock_Metal'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_Red.M_Sign_RoadBlock_Red'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_White.M_Sign_RoadBlock_White'
+    Materials[3] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_Red.M_Sign_RoadBlock_Red'
+    Materials[4] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_Yellow.M_Sign_RoadBlock_Yellow'
+}
+SourceModels[0] = {}
+StaticMaterials[5] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_Metal.M_Sign_RoadBlock_Metal'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 162.681, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_Red.M_Sign_RoadBlock_Red'
+        MaterialSlotName = Red
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 142.493, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_White.M_Sign_RoadBlock_White'
+        MaterialSlotName = White
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 142.257, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[3] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_Red.M_Sign_RoadBlock_Red'
+        MaterialSlotName = Orange
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 99.4325, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[4] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_Yellow.M_Sign_RoadBlock_Yellow'
+        MaterialSlotName = Yellow
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 35.1383, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=0, Y=-1.03053, Z=56.1032 }
+    BoxExtent = { X=146.019, Y=31.2188, Z=56.1032 }
+    SphereRadius = 158.981
+}

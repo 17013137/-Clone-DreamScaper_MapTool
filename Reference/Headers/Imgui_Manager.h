@@ -5,7 +5,9 @@
 BEGIN(Engine)
 
 class CGameObject;
-static const char* PrototypeList[]{ "House_00", "House_01", "House_02" , "House_03" };
+static const char* TileList[]{ "Normal" };
+
+static const char* PortalList[]{ "Normal", "Secret", "Hidden" };
 
 class ENGINE_DLL CImgui_Manager final : public CBase
 {
@@ -14,15 +16,48 @@ public:
 	char* Cell_TypeIndex[5]{ "Type1", "Type2", "Type3", "Type4", "Type5" };
 
 public:
+	typedef struct Item {
+		char Name[MAX_PATH];
+		bool is_Selected = false;
+	}Item;
+
+	typedef struct LOADDATA {
+		int TileCnt;
+		int ObjCnt;
+		int PortalCnt;
+	}LOADDATA;
+
 	typedef struct DATADESC {
 		_uint TagIndex;
+		_uint Number;
 		CGameObject* Object;
 	}DATADESC;
 
 	typedef struct SAVEDESC {
 		_uint TagIndex;
-		_float4x4 WorldMtx;
+		_uint Number;
+		XMFLOAT4X4 WorldMtx;
 	}SAVEDESC;
+	
+	typedef struct SAVETILE {
+		_uint TagIndex;
+		_uint Number;
+		XMFLOAT4X4 WorldMtx;
+	}SAVETILE;
+
+	typedef struct LINKPORTAL {
+		DATADESC* Me;
+		DATADESC* You;
+	}LINKPORTAL;
+
+	typedef struct SAVEPORTAL {
+		_uint TagIndex;
+		_uint TileIndex;
+		_uint LinkTileIndex;
+		XMFLOAT3 LinkPos;
+		XMFLOAT3 LinkOutDir;
+		XMFLOAT4X4 WorldMtx;
+	}SAVEPORTAL;
 
 public:
 	CImgui_Manager();
@@ -40,12 +75,16 @@ public:
 public:
 	//맵툴함수
 	void MapMenu_Contents();
-	void Create_Object(_int index);
+	void Create_Object();
 	_bool ObjectPicking();
 	_bool TilePicking(_int index);
 	void Remote_PickObj();
 	_bool SaveData();
 	_bool LoadData();
+	void Go_WantTile(int flag);
+
+	// _bool SaveTile();
+	// _bool LoadTile();
 
 	//네비메쉬함수
 	void NaviMenu_Contents();
@@ -55,6 +94,10 @@ public:
 	_bool SaveNavi();
 	_bool LoadNavi();
 
+
+	//포탈관련함수
+	void SetUp_PortalData(DATADESC* Portal);
+	_bool Push_SavePortal();
 private:
 	_bool Navi_Create();
 
@@ -63,6 +106,11 @@ public:
 	_bool m_NextPick = false;
 	CGameObject* m_PickObj = nullptr;
 	vector<DATADESC*> m_ObjectList;
+	vector<DATADESC*> m_TileList;
+	vector<Item> m_ObjListBox;
+	_int m_TileCnt = -1;
+	_int m_ObjectCnt = -1;
+	_int m_TileNumber = 0;
 
 	//네비
 	_bool m_Navimode = false;
@@ -73,10 +121,17 @@ public:
 	CELLDESC m_Point = { _float3() };
 	_int m_CellType = 0;
 
+	//포탈관련
+	vector<DATADESC*> m_PortalList;
+	vector<SAVEPORTAL> m_SavePortalList;
+	_int m_SelPortal = -1;
+	_int m_PortalCnt = 0;
+	LINKPORTAL m_LinkDesc;
+
+	_bool m_isOpenNode = false;
 public:
 	void OnOffImgui(void) { m_bImguiEnable = !m_bImguiEnable; }
 	bool isImguiEnable() { return m_bImguiEnable; }
-
 private:
 	ID3D11Device* m_pDevice = nullptr;
 	ID3D11DeviceContext* m_DeviceContext = nullptr;

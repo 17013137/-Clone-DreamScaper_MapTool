@@ -57,6 +57,7 @@ public:
 	const _bool& Get_isAnimEnd(_uint iAnimIndex);
 	void Set_FinishFalse(_uint iAnimIndex, _bool FrameZero = true);
 	const _bool& Get_isLinear() { return m_isLinear; };
+	char* Get_FileName() { return m_FileName; }
 
 private:
 	const aiScene*			m_pScene = nullptr;
@@ -98,6 +99,7 @@ private:
 
 private:
 	char*	m_pDatFilePath = nullptr;
+	char m_FileName[MAX_PATH] = "";
 
 private:
 	HRESULT Ready_MeshContainers();

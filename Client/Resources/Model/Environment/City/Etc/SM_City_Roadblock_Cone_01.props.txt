@@ -1,0 +1,38 @@
+Materials[2] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_Red.M_Sign_RoadBlock_Red'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_White.M_Sign_RoadBlock_White'
+}
+SourceModels[0] = {}
+StaticMaterials[2] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_Red.M_Sign_RoadBlock_Red'
+        MaterialSlotName = Orange
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 224.946, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_White.M_Sign_RoadBlock_White'
+        MaterialSlotName = White
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 62.3009, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=0, Y=0, Z=28.5 }
+    BoxExtent = { X=20.1148, Y=20.1148, Z=28.5 }
+    SphereRadius = 38.8415
+}

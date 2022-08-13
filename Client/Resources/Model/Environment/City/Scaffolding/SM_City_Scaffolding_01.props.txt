@@ -1,0 +1,50 @@
+Materials[3] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Scaffolding_Metal.M_Scaffolding_Metal'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Scaffolding_Wood.M_Scaffolding_Wood'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Scaffolding_Orange.M_Scaffolding_Orange'
+}
+SourceModels[0] = {}
+StaticMaterials[3] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Scaffolding_Metal.M_Scaffolding_Metal'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 960.055, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Scaffolding_Wood.M_Scaffolding_Wood'
+        MaterialSlotName = Wood
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 791.46, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Scaffolding_Orange.M_Scaffolding_Orange'
+        MaterialSlotName = Orange
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 687.256, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-152.13, Y=3.35916, Z=403.337 }
+    BoxExtent = { X=171.779, Y=259.276, Z=409.837 }
+    SphereRadius = 513.08
+}

@@ -1,0 +1,26 @@
+Materials[1] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Merchant/Material/M_Merchant_Platform.M_Merchant_Platform'
+}
+SourceModels[0] = {}
+StaticMaterials[1] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Merchant/Material/M_Merchant_Platform.M_Merchant_Platform'
+        MaterialSlotName = Rock
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1496.69, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-239.242, Y=-103.495, Z=-92.6828 }
+    BoxExtent = { X=557.016, Y=419.738, Z=189.896 }
+    SphereRadius = 722.279
+}

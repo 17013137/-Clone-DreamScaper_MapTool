@@ -1,0 +1,50 @@
+Materials[3] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_CityHall_Sidewalk.M_City_CityHall_Sidewalk'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_CityHall_Sidewalk.M_City_CityHall_Sidewalk'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_CityHall_Sidewalk.M_City_CityHall_Sidewalk'
+}
+SourceModels[0] = {}
+StaticMaterials[3] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_CityHall_Sidewalk.M_City_CityHall_Sidewalk'
+        MaterialSlotName = Border
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 951.952, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_CityHall_Sidewalk.M_City_CityHall_Sidewalk'
+        MaterialSlotName = Grey
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 918.769, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_CityHall_Sidewalk.M_City_CityHall_Sidewalk'
+        MaterialSlotName = LightGrey
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 825.034, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-227.351, Y=0, Z=15.0316 }
+    BoxExtent = { X=227.351, Y=293.288, Z=15.0316 }
+    SphereRadius = 370.28
+}

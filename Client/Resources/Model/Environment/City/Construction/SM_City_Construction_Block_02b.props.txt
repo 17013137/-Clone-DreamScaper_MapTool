@@ -1,0 +1,26 @@
+Materials[1] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_White_Concrete.M_Sign_RoadBlock_White_Concrete'
+}
+SourceModels[0] = {}
+StaticMaterials[1] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/Props/M_Sign_RoadBlock_White_Concrete.M_Sign_RoadBlock_White_Concrete'
+        MaterialSlotName = White
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 253.616, 400.121, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=0, Y=0.105362, Z=44.5018 }
+    BoxExtent = { X=22.3656, Y=147.485, Z=44.5018 }
+    SphereRadius = 155.395
+}

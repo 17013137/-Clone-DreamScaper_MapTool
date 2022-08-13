@@ -74,38 +74,111 @@ void CImgui_Manager::MapMenu_Contents()
 	static bool show_another_window = true;
 	//vector<const _tchar*> tcharPrototypelist = CComponent_Manager::GetInstance()->Get_ComponentTag(3);
 	//vector<const char*> PrototypeList;
-	static int selectCnt = -1;
-
+	static int TileMove = 0;
 	ImGuiStyle* style = &ImGui::GetStyle();
-	static ImGuiTextFilter filter;
+	//static ImGuiTextFilter filter;
 
 	if (show_another_window)
 	{
 		ImGui::Begin("Map Object", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-		filter.Draw(" ", 200);
+		ImGui::SliderInt("TileIndex", &TileMove, 0, m_TileNumber);
+		if (ImGui::Button("Go", ImVec2(50, 25))) {
+			Go_WantTile(TileMove);
+		}
 
-		if (ImGui::TreeNode("Object")) {
-			//ImGui::PushItemWidth();
-			
-			if (ImGui::ListBox(".", &selectCnt, PrototypeList, IM_ARRAYSIZE(PrototypeList), 10)) {
+		if (ImGui::TreeNode("Tile")) {
+
+			if (ImGui::ListBox(".", &m_TileCnt, TileList, IM_ARRAYSIZE(TileList), 2)) {
+				m_ObjectCnt = -1;
+				m_SelPortal = -1;
 				m_Navimode = false;
 			}
+
 			ImGui::TreePop();
+		}
 
-			if (ImGui::Button("Save", ImVec2(50, 20)))
-				SaveData();
+		if (ImGui::TreeNode("Object")) {
+			ImGui::BeginListBox(".");
 
-			ImGui::SameLine(0.f, 10.f);
+			int SelCnt = 0;
+			for (auto& iter : m_ObjListBox) {
+				if (ImGui::Selectable(iter.Name, &iter.is_Selected)) {
+					m_ObjectCnt = SelCnt;
+					iter.is_Selected = true;
+					m_TileCnt = -1;
+					m_SelPortal = -1;
+					m_Navimode = false;
+					break;
+				}
+				SelCnt++;
+			}
+			
+			int i = 0;
+			for (auto& iter : m_ObjListBox) {
+				if (i != m_ObjectCnt) {
+					iter.is_Selected = false;
+				}
+				i++;
+			}
 
-			if (ImGui::Button("Load", ImVec2(50, 20))) {
-				LoadData();
-				selectCnt = 0;
+			ImGui::EndListBox();
+
+
+			//ImGui::PushItemWidth();
+			//if (ImGui::ListBox(".", &m_ObjectCnt, PrototypeList, IM_ARRAYSIZE(PrototypeList), 10)) {
+			
+			ImGui::TreePop();
+		}
+		
+		if (m_PickObj != nullptr) {
+			_float4 PickPos = _float4();
+			XMStoreFloat4(&PickPos, m_PickObj->Get_Transform()->Get_State(CTransform::STATE_POSITION));
+			static float Pos[3] = { 0.f, 0.f, 0.f };
+			ImGui::SliderFloat3("Pos", Pos, 0, 500);
+
+
+			static _float Rotation = 0.f;
+			ImGui::SliderFloat("Rotation", &Rotation, -359, 359);
+
+			if (ImGui::Button("Set", ImVec2(50, 25))) {
+				PickPos = _float4(Pos[0], Pos[1], Pos[2], 1.f);
+				m_PickObj->Get_Transform()->Rotation(XMVectorSet(0.f, 1.f, 0.f, 0.f), XMConvertToRadians(Rotation));
+				m_PickObj->Get_Transform()->Set_State(CTransform::STATE_POSITION, XMLoadFloat4(&PickPos));
 			}
 		}
 
 
+		if (ImGui::TreeNode("Portal")) {
+			//ImGui::PushItemWidth();
+
+			ImGui::Text("Portal Count : %d", m_PortalCnt);
+			ImGui::SameLine(0, 20.f);
+			if (ImGui::Button("Push", ImVec2(50, 20))) {
+				Push_SavePortal();
+			}
+
+			if (ImGui::ListBox(".", &m_SelPortal, PortalList, IM_ARRAYSIZE(PortalList), 5)) {
+				m_Navimode = false;
+				m_TileCnt = -1;
+				m_ObjectCnt = -1;
+			}
+			ImGui::TreePop();
+		}
+
+		
+		if (ImGui::Button("Save", ImVec2(50, 20)))
+			SaveData();
+
+		ImGui::SameLine(0.f, 10.f);
+
+		if (ImGui::Button("Load", ImVec2(50, 20))) {
+			LoadData();
+			m_ObjectCnt = 0;
+		}
+
+
 		if (m_Navimode == false) {
-			Create_Object(selectCnt);
+			Create_Object();
 			Remote_PickObj();
 		}
 
@@ -113,16 +186,20 @@ void CImgui_Manager::MapMenu_Contents()
 	}
 }
 
-void CImgui_Manager::Create_Object(_int index)
+void CImgui_Manager::Create_Object()
 {
 	m_NextPick = false;
-	if (index < 0)
+	if (m_ObjectCnt < 0 && m_TileCnt < 0 && m_SelPortal < 0)
 		return;
+
+	int index = max(m_ObjectCnt, m_TileCnt);
+	index = max(index, m_SelPortal);
 
 	if (GetAsyncKeyState(VK_LBUTTON) & 0x0001) {
 		m_NextPick = ObjectPicking();
-		if (m_NextPick == false)
+		if (m_NextPick == false) {
 			TilePicking(index);
+		}
 	}
 }
 
@@ -141,6 +218,9 @@ _bool CImgui_Manager::ObjectPicking()
 			m_PickObj = iter->Object;
 
 			flag = true;
+			m_ObjectCnt = iter->TagIndex;
+			m_TileCnt = -1;
+			m_SelPortal = -1;
 		}
 		else {
 			CollideSphere->Set_isCollison(false);
@@ -148,6 +228,47 @@ _bool CImgui_Manager::ObjectPicking()
 		}
 	}
 
+//	for (auto& iter : m_TileList) {
+//		CCollider* CollideSphere = (CCollider*)iter->Object->Get_Component(L"Com_Sphere");
+//		if (CollideSphere == nullptr)
+//			continue;
+//	
+//		if (XMVectorGetX(XMVector3Length(CollideSphere->Intersect_Ray()))) {
+//			CollideSphere->Set_isCollison(true);
+//			CollideSphere->Set_Color(_float3(1.f, 0.f, 0.f));
+//			m_PickObj = iter->Object;
+//	
+//			flag = true;
+//			m_ObjectCnt = -1;
+//			m_TileCnt = iter->TagIndex;
+//			m_SelPortal = -1;
+//		}
+//		else {
+//			CollideSphere->Set_isCollison(false);
+//			CollideSphere->Set_Color(_float3(0.f, 1.f, 0.f));
+//		}
+//	}
+
+	for (auto& iter : m_PortalList) {
+		CCollider* CollideSphere = (CCollider*)iter->Object->Get_Component(L"Com_Sphere");
+		if (CollideSphere == nullptr)
+			continue;
+
+		if (XMVectorGetX(XMVector3Length(CollideSphere->Intersect_Ray()))) {
+			CollideSphere->Set_isCollison(true);
+			CollideSphere->Set_Color(_float3(1.f, 0.f, 0.f));
+			m_PickObj = iter->Object;
+
+			flag = true;
+			m_ObjectCnt = -1;
+			m_TileCnt = -1;
+			m_SelPortal = iter->TagIndex;
+		}
+		else {
+			CollideSphere->Set_isCollison(false);
+			CollideSphere->Set_Color(_float3(0.f, 1.f, 0.f));
+		}
+	}
 	return flag;
 }
 
@@ -162,6 +283,10 @@ _bool CImgui_Manager::TilePicking(_int index)
 	_vector PickedPos = Collide->Intersect_Ray();
 
 	if (XMVectorGetX(XMVector3Length(PickedPos)) > 0) {
+		ImVec2 temp = ImGui::GetMousePos();
+		if (temp.x < 300.f)
+			return false;
+
 		flag = true;
 		//char strtemp[MAX_PATH] = "";
 		//strcpy_s(strtemp, PrototypeList[0]);
@@ -169,14 +294,44 @@ _bool CImgui_Manager::TilePicking(_int index)
 		//MultiByteToWideChar(CP_ACP, 0, PrototypeList[index], (int)strlen(PrototypeList[index]), szFullPath, MAX_PATH);
 
 		CGameObject* Obj = nullptr;
-		if ((Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"ObjectList", L"Prototype_GameObject_AllObject", &index)) != nullptr) {
+		if (m_ObjectCnt >= 0 && m_TileList.size() > 0)
+			Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"Object", L"Prototype_GameObject_AllObject", &index);
+		else if (m_TileCnt >= 0)
+			Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"LandScape", L"Prototype_GameObject_LandScape", &index);
+		else if (m_SelPortal >= 0) {
+			Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"Portal", L"Prototype_GameObject_Portal", &index);
+		}
+		if (Obj != nullptr) {
 			CTransform* ObjTrans = Obj->Get_Transform();
 			PickedPos = XMVectorSetW(PickedPos, 1.f);
 			ObjTrans->Set_State(CTransform::STATE_POSITION, PickedPos);
 			DATADESC* Datadesc = new DATADESC;
 			Datadesc->Object = Obj;
 			Datadesc->TagIndex = index;
-			m_ObjectList.push_back(Datadesc);
+			Datadesc->Number = 0;
+			if (m_ObjectCnt >= 0) {
+				_float ResultDist = (_float)INT_MAX;
+				int ResultTileIndex = 0;
+
+				for (auto& iter : m_TileList) {
+					_vector TilePos = iter->Object->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+					_float Dist = XMVectorGetX(XMVector3Length(Obj->Get_Transform()->Get_State(CTransform::STATE_POSITION) - TilePos));
+					if (ResultDist > Dist) {
+						ResultDist = Dist;
+						ResultTileIndex = iter->Number;
+					}
+				}
+				Datadesc->Number = ResultTileIndex;
+				m_ObjectList.push_back(Datadesc);
+			}
+			else if (m_TileCnt >= 0) {
+				Datadesc->Number = m_TileNumber;
+				m_TileList.push_back(Datadesc);
+				m_TileNumber++;
+			}
+			else if (m_SelPortal >= 0) {
+				SetUp_PortalData(Datadesc);
+			}
 		}
 	}
 	return flag;
@@ -184,9 +339,16 @@ _bool CImgui_Manager::TilePicking(_int index)
 
 void CImgui_Manager::Remote_PickObj()
 {
-	if (m_PickObj == nullptr)
+ 	if (m_PickObj == nullptr)
 		return;
+
 	CTransform* PickTrans = m_PickObj->Get_Transform();
+
+	if (CInput_Device::GetInstance()->Get_DIKeyState(DIK_3))
+		PickTrans->Go_Y(0.005f);
+	
+	if (CInput_Device::GetInstance()->Get_DIKeyState(DIK_4))
+		PickTrans->Go_Y(-0.005f);
 
 	if (CInput_Device::GetInstance()->Get_DIKeyState(DIK_W))
 		PickTrans->Go_Screen_Up(0.01f);
@@ -217,16 +379,45 @@ void CImgui_Manager::Remote_PickObj()
 		m_PickObj = nullptr;
 
 		int i = 0;
-		for (auto&iter : m_ObjectList) {
-			if (iter->Object == Temp) {
-				m_ObjectList.erase(m_ObjectList.begin() + i);
-				break;
-			}
-			else {
-				i++;
+		if (m_ObjectCnt >= 0) {
+			for (auto&iter : m_ObjectList) {
+				if (iter->Object == Temp) {
+					m_ObjectList.erase(m_ObjectList.begin() + i);
+					break;
+				}
+				else
+					i++;
 			}
 		}
-
+		else if (m_TileCnt >= 0) {
+			for (auto&iter : m_TileList) {
+				if (iter->Object == Temp) {
+					m_TileList.erase(m_TileList.begin() + i);
+					break;
+				}
+				else
+					i++;
+			}
+		}
+		else if (m_SelPortal >= 0) {
+			for (auto&iter : m_PortalList) {
+				if (iter->Object == Temp) {
+					m_PortalList.erase(m_PortalList.begin() + i);
+					break;
+				}
+				else
+					i++;
+			}
+			if (m_PortalCnt == 1) {
+				m_LinkDesc.Me = nullptr;
+				m_PortalCnt--;
+			}
+			if (m_PortalCnt == 2) {
+				m_LinkDesc.You = nullptr;
+				m_PortalCnt--;
+			}
+		}
+		
 		Temp->Set_Dead();
 	}
 }
@@ -282,7 +473,7 @@ void CImgui_Manager::NaviMenu_Contents()
 
 _bool CImgui_Manager::Remote_Navi()
 {
-	if (m_PickNavi == nullptr)
+	if (m_PickNavi == nullptr || m_NaviCount == 0)
 		return false;
 
 	if (CInput_Device::GetInstance()->Get_DIKeyState(DIK_NUMPAD8))
@@ -416,43 +607,10 @@ _bool CImgui_Manager::SaveNavi()
 
 _bool CImgui_Manager::LoadNavi()
 {
-	//_ulong			dwByte = 0;
-	//
-	//HANDLE			hFile = CreateFile(TEXT("../DataNavi/DataNavi.dat"), GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
-	//
-	//if (0 == hFile)
-	//	return E_FAIL;
-	//
-	//while (true)
-	//{
-	//	//네비게이션 이니셜라이즈로 로드먼저
-	//
-	//	CELLDESC vPoint;
-	//
-	//	ReadFile(hFile, &vPoint, sizeof(CELLDESC), &dwByte, nullptr);
-	//	if (0 == dwByte)
-	//		break;
-	//
-	//	_float3 fPos[3];
-	//	memcpy(fPos, &vPoint, sizeof(_float3) * 3);
-	//
-	//	m_Cell.push_back(vPoint);
-	//	for (int i = 0; i < 3; i++) {
-	//		CGameObject* NaviMesh = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"NaviFlag", L"Prototype_GameObject_NaviFlag");
-	//		if (NaviMesh == nullptr) {
-	//			MSGBOX("FAILED LOAD OBJECT !!!");
-	//			return S_OK;
-	//		}
-	//
-	//		NaviMesh->Get_Transform()->Set_State(CTransform::STATE_POSITION, XMVectorSet(fPos[i].x, fPos[i].y, fPos[i].z, 1.f));
-	//	}
-	//}
-	//
-	//CloseHandle(hFile);
 	CTransform* BaseTile = CObject_Manager::GetInstance()->Get_Transform(3, L"Layer_BackGround");
 	if (BaseTile == nullptr) {
 		MSGBOX("FAILED BaseTile Transform")
-		return E_FAIL;
+		return false;
 	}
 
 	CNavigation::GetInstance()->Initialize(m_pDevice, m_DeviceContext, TEXT("../DataNavi/DataNavi.dat"), BaseTile);
@@ -465,7 +623,7 @@ _bool CImgui_Manager::LoadNavi()
 			CGameObject* NaviMesh = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"NaviFlag", L"Prototype_GameObject_NaviFlag");
 			if (NaviMesh == nullptr) {
 				MSGBOX("LOAD FAILED !!!!");
-				return S_OK;
+				return false;
 			}
 			NaviMesh->Get_Transform()->Set_State(CTransform::STATE_POSITION, XMVectorSet(iter->Get_fPoint(j).x, iter->Get_fPoint(j).y, iter->Get_fPoint(j).z, 1.f));
 		}
@@ -478,7 +636,65 @@ _bool CImgui_Manager::LoadNavi()
 	}
 
 	MSGBOX("GOOD !");
-	return S_OK;
+	return true;
+}
+
+void CImgui_Manager::SetUp_PortalData(DATADESC* Portal)
+{
+	_vector PortalPos = Portal->Object->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+	_float ResultDist = (_float)INT_MAX;
+	int ResultTileIndex = 0;
+
+	for (auto& iter : m_TileList) {
+		_vector TilePos = iter->Object->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+		_float Dist = XMVectorGetX(XMVector3Length(PortalPos - TilePos));
+		if (ResultDist > Dist) {
+			ResultDist = Dist;
+			ResultTileIndex = iter->Number;
+		}
+	}
+
+	Portal->Number = ResultTileIndex;
+	Portal->Object->Set_Alpha(0.5f);
+	m_PortalList.push_back(Portal);
+
+	if (m_PortalCnt == 0)
+		m_LinkDesc.Me = Portal;
+	else
+		m_LinkDesc.You = Portal;
+	m_PortalCnt++;
+}
+
+_bool CImgui_Manager::Push_SavePortal()
+{
+	if (m_PortalCnt == 2) {
+		SAVEPORTAL SavePortal;
+		SavePortal.TagIndex = m_LinkDesc.Me->TagIndex;
+		SavePortal.TileIndex = m_LinkDesc.Me->Number;
+		SavePortal.LinkTileIndex = m_LinkDesc.You->Number;
+		XMStoreFloat3(&SavePortal.LinkPos, m_LinkDesc.You->Object->Get_Transform()->Get_State(CTransform::STATE_POSITION));
+		XMStoreFloat3(&SavePortal.LinkOutDir, m_LinkDesc.You->Object->Get_Transform()->Get_State(CTransform::STATE_LOOK));
+		SavePortal.WorldMtx = m_LinkDesc.Me->Object->Get_Transform()->Get_WorldFloat4x4();
+		m_SavePortalList.push_back(SavePortal);
+
+		SAVEPORTAL SavePortal2;
+		SavePortal2.TagIndex = m_LinkDesc.You->TagIndex;
+		SavePortal2.TileIndex = m_LinkDesc.You->Number;
+		SavePortal2.LinkTileIndex = m_LinkDesc.Me->Number;
+		XMStoreFloat3(&SavePortal2.LinkPos, m_LinkDesc.Me->Object->Get_Transform()->Get_State(CTransform::STATE_POSITION));
+		XMStoreFloat3(&SavePortal2.LinkOutDir, m_LinkDesc.Me->Object->Get_Transform()->Get_State(CTransform::STATE_LOOK));
+		SavePortal2.WorldMtx = m_LinkDesc.You->Object->Get_Transform()->Get_WorldFloat4x4();
+		m_SavePortalList.push_back(SavePortal2);
+
+		m_PortalCnt = 0;
+		
+		m_LinkDesc.Me->Object->Set_Alpha(1.f);
+		m_LinkDesc.You->Object->Set_Alpha(1.f);
+		
+		return true;
+	}
+
+	return false;
 }
 
 _bool CImgui_Manager::SaveData()
@@ -499,15 +715,33 @@ _bool CImgui_Manager::SaveData()
 		MSGBOX("FAILDE OPEN FILE !!!");
 		return false;
 	}
-	
-
 
 	//클래스 태그, 월드매트릭스
+	LOADDATA LoadData;
+	LoadData.TileCnt = m_TileList.size();
+	LoadData.ObjCnt = m_ObjectList.size();
+	LoadData.PortalCnt = m_SavePortalList.size();
+	WriteFile(hFile, &(LoadData), sizeof(LOADDATA), &dwByte, nullptr);
+
+	for (auto iter : m_TileList) {
+		SAVETILE SaveDesc;
+
+		SaveDesc.TagIndex = iter->TagIndex;
+		SaveDesc.Number = iter->Number;
+		SaveDesc.WorldMtx = iter->Object->Get_Transform()->Get_WorldFloat4x4();
+
+		WriteFile(hFile, &(SaveDesc), sizeof(SAVETILE), &dwByte, nullptr);
+	}
+
+	for (auto iter : m_SavePortalList)
+		WriteFile(hFile, &(iter), sizeof(SAVEPORTAL), &dwByte, nullptr);
+
 
 	for (auto iter : m_ObjectList) {
 		SAVEDESC SaveDesc;
 
 		SaveDesc.TagIndex = iter->TagIndex;
+		SaveDesc.Number = iter->Number;
 		SaveDesc.WorldMtx = iter->Object->Get_Transform()->Get_WorldFloat4x4();
 
 		WriteFile(hFile, &(SaveDesc), sizeof(SAVEDESC), &dwByte, nullptr);
@@ -536,7 +770,49 @@ _bool CImgui_Manager::LoadData()
 		return false;
 	}
 
-	while (true)
+	LOADDATA LoadData;
+
+	ReadFile(hFile, &LoadData, sizeof(LOADDATA), &dwByte, nullptr);
+	if (dwByte == 0)
+		return false;
+
+	for (int i = 0; i < LoadData.TileCnt; i++) {
+		SAVETILE SaveTile;
+		ReadFile(hFile, &SaveTile, sizeof(SAVETILE), &dwByte, nullptr);
+		if (0 == dwByte)
+			break;
+
+		CGameObject* Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"LandScape", L"Prototype_GameObject_LandScape", &SaveTile.TagIndex);
+
+		DATADESC* Data = new DATADESC;
+		Data->TagIndex = SaveTile.TagIndex;
+		Data->Number = SaveTile.Number;
+		Data->Object = Obj;
+		m_TileNumber = Data->Number+1;
+		Obj->Get_Transform()->Set_WorldMTX(SaveTile.WorldMtx);
+
+		m_TileList.push_back(Data);
+	}
+
+	for (int i = 0; i < LoadData.PortalCnt; i++) {
+		SAVEPORTAL SavePortal;
+		ReadFile(hFile, &SavePortal, sizeof(SAVEPORTAL), &dwByte, nullptr);
+		if (0 == dwByte)
+			break;
+
+		m_SavePortalList.push_back(SavePortal);
+
+		CGameObject* Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"Portal", L"Prototype_GameObject_Portal", &SavePortal.TagIndex);
+		DATADESC* Data = new DATADESC;
+		Data->TagIndex = SavePortal.TagIndex;
+		Data->Number = SavePortal.TileIndex;
+		Data->Object = Obj;
+		Obj->Get_Transform()->Set_WorldMTX(SavePortal.WorldMtx);
+
+		m_PortalList.push_back(Data);
+	}
+
+	for (int i = 0; i < LoadData.ObjCnt; i++)
 	{
 		SAVEDESC SaveData;
 
@@ -548,6 +824,7 @@ _bool CImgui_Manager::LoadData()
 
 		DATADESC* Data = new DATADESC;
 		Data->TagIndex = SaveData.TagIndex;
+		Data->Number = SaveData.Number;
 		Data->Object = Obj;
 
 		Obj->Get_Transform()->Set_WorldMTX(SaveData.WorldMtx);
@@ -560,6 +837,20 @@ _bool CImgui_Manager::LoadData()
 	MSGBOX("SUCCESS !!");
 
 	return true;
+}
+
+void CImgui_Manager::Go_WantTile(int flag)
+{
+	for (auto& iter : m_TileList) {
+		if (iter->Number == flag) {
+			_vector TilePos = iter->Object->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+			_vector temp = XMVectorSetY(TilePos, 20.f);
+			CTransform* trans = CObject_Manager::GetInstance()->Get_Transform(3, L"Layer_Camera");
+			if (trans != nullptr) {
+				trans->Set_State(CTransform::STATE_POSITION, temp);
+			}
+		}
+	}
 }
 
 HRESULT CImgui_Manager::Render()
@@ -590,6 +881,7 @@ LRESULT CImgui_Manager::WndProcHandler(HWND hWnd, UINT message, WPARAM wParam, L
 
 void CImgui_Manager::Shutdown(void)
 {
+
 }
 
 void CImgui_Manager::Free()

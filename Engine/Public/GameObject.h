@@ -29,6 +29,7 @@ public:
 
 public:
 	void Set_Dead() { m_Dead = true; }
+	void Set_Alpha(_float flag) { m_Alpha = flag; }
 
 protected:
 	ID3D11Device*			m_pDevice = nullptr;
@@ -48,17 +49,18 @@ protected:
 private:
 	CComponent* Find_Component(const _tchar* pComponentTag);
 
+protected:
+	_uint m_iLevelIndex = 0;
+	_bool m_Dead = false;
+	_bool m_Culling = false;
+	_float m_Alpha = 1.f;
+	_float m_Speed = 1.f;
 
 public:
 	virtual CGameObject* Clone(void* pArg) = 0;
 	virtual void Free() override;
 
-protected:
-	_uint m_iLevelIndex = 0;
-	_bool m_Dead = false;
-	_bool m_Culling = false;
 
-	_float m_Speed = 1.f;
 };
 
 END

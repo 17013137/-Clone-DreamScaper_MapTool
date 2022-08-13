@@ -14,6 +14,8 @@ BEGIN(Client)
 
 class CAllObject final : public CGameObject
 {
+	enum STAGE{ STAGE1, STAGE2, STAGE3, STAGE_END };
+
 private:
 	explicit CAllObject(ID3D11Device* pDeviceOut, ID3D11DeviceContext* pDeviceContextOut);
 	explicit CAllObject(const CAllObject& rhs);
@@ -36,10 +38,14 @@ private:
 	CShader*			m_pShaderCom = nullptr;	
 
 private:
-	vector<CModel*> m_Models;
-
+	vector<CModel> Stage1;
+	vector<CModel> Stage2;
+	vector<CModel> Stage3;
+	vector<CModel*>* m_Models;
+	vector<char*> m_NameTag;
 
 private:
+	_int m_LevelIndex = 0;
 	_uint m_ModelIndex = 0;
 
 private:

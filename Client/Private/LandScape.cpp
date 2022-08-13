@@ -35,11 +35,12 @@ HRESULT CLandScape::NativeConstruct(void * pArg)
 
 	if (FAILED(SetUp_Components()))
 		return E_FAIL;	
-	m_pTransformCom->Turn(XMVectorSet(0.f, 1.f, 0.f, 0.f), -0.5f);
 
-	m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(10.f, 0.f, 10.f, 1.f));
+	if (pArg != nullptr)
+		memcpy(&m_ModelIndex, pArg, sizeof(int));
 
 	m_pSphereCom->Update(m_pTransformCom->Get_WorldMatrix());
+
 	return S_OK;
 }
 
@@ -88,9 +89,9 @@ HRESULT CLandScape::Render()
 			return E_FAIL;
 	}	
 
-#ifdef _DEBUG
-	m_pSphereCom->Render();
-#endif // _DEBUG
+//#ifdef _DEBUG
+//	m_pSphereCom->Render();
+//#endif // _DEBUG
 
 	return S_OK;
 }
@@ -103,8 +104,10 @@ HRESULT CLandScape::SetUp_Components()
 	/* For.Com_Shader */
 	if (FAILED(__super::SetUp_Components(TEXT("Com_Shader"), LEVEL_STATIC, TEXT("Prototype_Component_Shader_VtxNonAnim"), (CComponent**)&m_pShaderCom)))
 		return E_FAIL;
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_LandScape"), (CComponent**)&m_pModelCom)))
+
+	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Landscape_Boss"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Landscape_Boss"), (CComponent**)&m_pModelCom)))
 		return E_FAIL;
+
 
 	CCollider::COLLIDERDESC			ColliderDesc;
 	ZeroMemory(&ColliderDesc, sizeof(CCollider::COLLIDERDESC));
@@ -115,7 +118,6 @@ HRESULT CLandScape::SetUp_Components()
 
 	if (FAILED(__super::SetUp_Components(TEXT("Com_Sphere"), LEVEL_STATIC, TEXT("Prototype_Component_Collider_SPHERE"), (CComponent**)&m_pSphereCom, &ColliderDesc)))
 		return E_FAIL;
-
 
 	return S_OK;
 }
@@ -168,7 +170,6 @@ void CLandScape::Free()
 
 	Safe_Release(m_pSphereCom);
 	Safe_Release(m_pShaderCom);
-	Safe_Release(m_pModelCom);
 	Safe_Release(m_pRendererCom);
-
+	Safe_Release(m_pModelCom);
 }

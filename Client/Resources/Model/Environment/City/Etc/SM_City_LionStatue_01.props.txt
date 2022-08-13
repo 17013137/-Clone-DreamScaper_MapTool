@@ -1,0 +1,26 @@
+Materials[1] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_CityHall_Concrete.M_City_CityHall_Concrete'
+}
+SourceModels[0] = {}
+StaticMaterials[1] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_CityHall_Concrete.M_City_CityHall_Concrete'
+        MaterialSlotName = Pillar
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 813.298, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=0.0155029, Y=-0.0564804, Z=250.507 }
+    BoxExtent = { X=239.258, Y=121.691, Z=250.507 }
+    SphereRadius = 367.123
+}

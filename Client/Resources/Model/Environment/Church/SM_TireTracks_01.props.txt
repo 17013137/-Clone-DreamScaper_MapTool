@@ -1,0 +1,38 @@
+Materials[2] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_TireTracks.M_TireTracks'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_TireTracks_Inst.M_TireTracks_Inst'
+}
+SourceModels[0] = {}
+StaticMaterials[2] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_TireTracks.M_TireTracks'
+        MaterialSlotName = TireTracks
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 461.359, 952.307, 1580.76, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_TireTracks_Inst.M_TireTracks_Inst'
+        MaterialSlotName = TireTracks_02
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 457.017, 578.476, 1388.34, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=23.3961, Y=474.248, Z=14.5 }
+    BoxExtent = { X=522.315, Y=1071.54, Z=3.5 }
+    SphereRadius = 1119.5
+}

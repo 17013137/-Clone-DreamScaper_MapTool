@@ -173,21 +173,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\ShaderFiles\Shader_Defines.hpp" />
-    <ClInclude Include="..\Public\Bed.h" />
     <ClInclude Include="..\Public\BackGround.h" />
+    <ClInclude Include="..\Public\Bed.h" />
     <ClInclude Include="..\Public\Camera_Default.h" />
     <ClInclude Include="..\Public\Camera_First.h" />
-    <ClInclude Include="..\Public\CampGroundRoad.h" />
     <ClInclude Include="..\Public\Client_Defines.h" />
     <ClInclude Include="..\Public\Fork.h" />
     <ClInclude Include="..\Public\AllObject.h" />
-    <ClInclude Include="..\Public\House_00.h" />
-    <ClInclude Include="..\Public\House_01.h" />
-    <ClInclude Include="..\Public\House_02.h" />
-    <ClInclude Include="..\Public\House_03.h" />
-    <ClInclude Include="..\Public\House_04.h" />
     <ClInclude Include="..\Public\LandScape.h" />
-    <ClInclude Include="..\Public\LandScape_Boss.h" />
     <ClInclude Include="..\Public\Level_GamePlay.h" />
     <ClInclude Include="..\Public\Level_Loading.h" />
     <ClInclude Include="..\Public\Level_Logo.h" />
@@ -196,7 +189,7 @@
     <ClInclude Include="..\Public\LoadingLogo.h" />
     <ClInclude Include="..\Public\MainApp.h" />
     <ClInclude Include="..\Public\NaviFlag.h" />
-    <ClInclude Include="..\Public\ParkingRoad.h" />
+    <ClInclude Include="..\Public\Portal.h" />
     <ClInclude Include="..\Public\Sword.h" />
     <ClInclude Include="..\Public\Terrain.h" />
     <ClInclude Include="Client.h" />
@@ -207,20 +200,13 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Private\Bed.cpp" />
     <ClCompile Include="..\Private\BackGround.cpp" />
+    <ClCompile Include="..\Private\Bed.cpp" />
     <ClCompile Include="..\Private\Camera_Default.cpp" />
     <ClCompile Include="..\Private\Camera_First.cpp" />
-    <ClCompile Include="..\Private\CampGroundRoad.cpp" />
     <ClCompile Include="..\Private\Fork.cpp" />
     <ClCompile Include="..\Private\AllObject.cpp" />
-    <ClCompile Include="..\Private\House_00.cpp" />
-    <ClCompile Include="..\Private\House_01.cpp" />
-    <ClCompile Include="..\Private\House_02.cpp" />
-    <ClCompile Include="..\Private\House_03.cpp" />
-    <ClCompile Include="..\Private\House_04.cpp" />
     <ClCompile Include="..\Private\LandScape.cpp" />
-    <ClCompile Include="..\Private\LandScape_Boss.cpp" />
     <ClCompile Include="..\Private\Level_GamePlay.cpp" />
     <ClCompile Include="..\Private\Level_Loading.cpp" />
     <ClCompile Include="..\Private\Level_Logo.cpp" />
@@ -229,7 +215,7 @@
     <ClCompile Include="..\Private\LoadingLogo.cpp" />
     <ClCompile Include="..\Private\MainApp.cpp" />
     <ClCompile Include="..\Private\NaviFlag.cpp" />
-    <ClCompile Include="..\Private\ParkingRoad.cpp" />
+    <ClCompile Include="..\Private\Portal.cpp" />
     <ClCompile Include="..\Private\Sword.cpp" />
     <ClCompile Include="..\Private\Terrain.cpp" />
     <ClCompile Include="Client.cpp" />

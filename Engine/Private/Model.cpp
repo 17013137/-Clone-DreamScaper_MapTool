@@ -28,6 +28,8 @@ CModel::CModel(const CModel & rhs)
 	, m_pDatFilePath(rhs.m_pDatFilePath)
 	, m_ClonedHierarchyNodes(rhs.m_HierarchyNodes)
 {
+	strcpy_s(m_FileName, rhs.m_FileName);
+
 	for (auto& pMeshContainer : m_MeshContainers)
 		Safe_AddRef(pMeshContainer);	
 
@@ -68,7 +70,7 @@ HRESULT CModel::NativeConstruct_Prototype(TYPE eType, const char * pModelFilePat
 
 	strcpy_s(szFullPath, pModelFilePath);
 	strcat_s(szFullPath, pModelFileName);
-
+	strcpy_s(m_FileName, pModelFileName);
 	// 만약 같은 경로의 같은 이름의 dat파일을 열었을 경우
 	string str{ szFullPath };
 	_uint lastDotPos = _uint(str.find_last_of("."));

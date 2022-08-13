@@ -1,0 +1,26 @@
+Materials[1] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Merchant/Material/M_Enchantment_Platform_Emissive_Inst.M_Enchantment_Platform_Emissive_Inst'
+}
+SourceModels[0] = {}
+StaticMaterials[1] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Merchant/Material/M_Enchantment_Platform_Emissive_Inst.M_Enchantment_Platform_Emissive_Inst'
+        MaterialSlotName = Emissive_02
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 0, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=0, Y=0, Z=-8.95951 }
+    BoxExtent = { X=231.255, Y=232.466, Z=0 }
+    SphereRadius = 232.466
+}

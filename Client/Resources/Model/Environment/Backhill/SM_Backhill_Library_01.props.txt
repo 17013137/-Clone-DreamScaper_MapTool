@@ -1,0 +1,110 @@
+Materials[8] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Brick_Brown.M_Backhill_Brick_Brown'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/Diner/Material/M_Diner_Roof_Snow.M_Diner_Roof_Snow'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Glass.M_Backhill_Glass'
+    Materials[3] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Trim.M_Backhill_Trim'
+    Materials[4] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal.M_Backhill_Metal'
+    Materials[5] = MaterialInstanceConstant'/Game/Environment/Assets/House/Material/M_Wood_01_Snow.M_Wood_01_Snow'
+    Materials[6] = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Sidewalk.M_Backhill_Sidewalk'
+    Materials[7] = MaterialInstanceConstant'/Game/Environment/Assets/Diner/Material/M_Diner_Roof_Snow.M_Diner_Roof_Snow'
+}
+SourceModels[0] = {}
+StaticMaterials[8] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Brick_Brown.M_Backhill_Brick_Brown'
+        MaterialSlotName = Wall
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 3599.28, 28914.5, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Diner/Material/M_Diner_Roof_Snow.M_Diner_Roof_Snow'
+        MaterialSlotName = White
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 4094.8, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Glass.M_Backhill_Glass'
+        MaterialSlotName = Glass
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 3988.87, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[3] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Trim.M_Backhill_Trim'
+        MaterialSlotName = Pillar
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 3988.17, 44292.7, 0, 0 }
+        }
+    }
+    StaticMaterials[4] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Metal.M_Backhill_Metal'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 3751.11, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[5] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/House/Material/M_Wood_01_Snow.M_Wood_01_Snow'
+        MaterialSlotName = Wood
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 3440.85, 3071.67, 0, 0 }
+        }
+    }
+    StaticMaterials[6] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Backhill/Material/M_Backhill_Sidewalk.M_Backhill_Sidewalk'
+        MaterialSlotName = Sidewalk
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 3779.3, 45710.8, 0, 0 }
+        }
+    }
+    StaticMaterials[7] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Diner/Material/M_Diner_Roof_Snow.M_Diner_Roof_Snow'
+        MaterialSlotName = Roof
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 43168.9, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-526.952, Y=391.131, Z=605.933 }
+    BoxExtent = { X=791.948, Y=656.126, Z=605.974 }
+    SphereRadius = 1120
+}

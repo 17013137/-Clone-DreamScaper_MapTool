@@ -124,6 +124,8 @@ HRESULT CLevel_GamePlay::Ready_Layer_Player(const _tchar * pLayerTag)
 	CGameInstance*		pGameInstance = CGameInstance::GetInstance();
 	Safe_AddRef(pGameInstance);
 
+	pGameInstance->Add_GameObjectToLayer(LEVEL_GAMEPLAY, L"Temp", L"Prototype_GameObject_AllObject");
+
 	Safe_Release(pGameInstance);
 
 	return S_OK;

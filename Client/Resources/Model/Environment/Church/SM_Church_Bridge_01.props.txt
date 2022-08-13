@@ -1,0 +1,50 @@
+Materials[3] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Concrete.M_Church_Concrete'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/House/Material/M_Metal_Snow.M_Metal_Snow'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Concrete_NoSno.M_Church_Concrete_NoSno'
+}
+SourceModels[0] = {}
+StaticMaterials[3] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Concrete.M_Church_Concrete'
+        MaterialSlotName = Concrete
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1017.98, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/House/Material/M_Metal_Snow.M_Metal_Snow'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 1103.06, 0, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Concrete_NoSno.M_Church_Concrete_NoSno'
+        MaterialSlotName = Concrete_02
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 9700.13, 0, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=0, Y=0, Z=-192.535 }
+    BoxExtent = { X=812.5, Y=477.09, Z=277.465 }
+    SphereRadius = 971.642
+}

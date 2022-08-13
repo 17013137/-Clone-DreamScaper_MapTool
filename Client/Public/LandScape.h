@@ -26,11 +26,19 @@ public:
 	virtual void LateTick(_double TimeDelta) override;
 	virtual HRESULT Render() override;
 
+public:
+	void Set_ModelINdex(_uint flag) { m_ModelIndex = flag; }
+	const _uint& Get_ModelINdex() { return m_ModelIndex; }
+
 private:	
 	CRenderer*			m_pRendererCom = nullptr;
 	CShader*			m_pShaderCom = nullptr;	
-	CModel*				m_pModelCom = nullptr;
 	CCollider*			m_pSphereCom = nullptr;
+	CModel*				m_pModelCom = nullptr;
+
+private:
+	_uint m_Index = 0;
+	_int m_ModelIndex = 0;
 
 private:
 	HRESULT SetUp_Components();

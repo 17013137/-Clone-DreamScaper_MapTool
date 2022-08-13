@@ -1,0 +1,50 @@
+Materials[3] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Ground.M_Church_Ground'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Ground_Texture.M_Church_Ground_Texture'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Water.M_Church_Water'
+}
+SourceModels[0] = {}
+StaticMaterials[3] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Ground.M_Church_Ground'
+        MaterialSlotName = Ground
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 7028.62, 12945.7, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Ground_Texture.M_Church_Ground_Texture'
+        MaterialSlotName = Terrain
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 5475.8, 13565.7, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/Church/Material/M_Church_Water.M_Church_Water'
+        MaterialSlotName = Water
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 5176.32, 10168, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-948.413, Y=131.496, Z=-93.6644 }
+    BoxExtent = { X=6849.52, Y=8546.74, Z=93.6651 }
+    SphereRadius = 8925.55
+}

@@ -1,0 +1,110 @@
+Materials[8] =
+{
+    Materials[0] = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Wall_NIghtmare_02.M_City_Wall_NIghtmare_02'
+    Materials[1] = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Wall_NIghtmare_02.M_City_Wall_NIghtmare_02'
+    Materials[2] = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Metal_Nightmare.M_City_Metal_Nightmare'
+    Materials[3] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Black.M_City_Black'
+    Materials[4] = Material3'/Game/Environment/Assets/City/Material/Empty.Empty'
+    Materials[5] = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Wall_NIghtmare_Pillar_02.M_City_Wall_NIghtmare_Pillar_02'
+    Materials[6] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Brick.M_City_Wall_Brick'
+    Materials[7] = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_White.M_City_White'
+}
+SourceModels[0] = {}
+StaticMaterials[8] =
+{
+    StaticMaterials[0] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Wall_NIghtmare_02.M_City_Wall_NIghtmare_02'
+        MaterialSlotName = Concrete
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2420.31, 5408.75, 0, 0 }
+        }
+    }
+    StaticMaterials[1] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Wall_NIghtmare_02.M_City_Wall_NIghtmare_02'
+        MaterialSlotName = Wall
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2226.62, 5148.69, 0, 0 }
+        }
+    }
+    StaticMaterials[2] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Metal_Nightmare.M_City_Metal_Nightmare'
+        MaterialSlotName = Metal
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 322.544, 5520.02, 0, 0 }
+        }
+    }
+    StaticMaterials[3] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Black.M_City_Black'
+        MaterialSlotName = Black
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2571.21, 5533.66, 0, 0 }
+        }
+    }
+    StaticMaterials[4] =
+    {
+        MaterialInterface = Material3'/Game/Environment/Assets/City/Material/Empty.Empty'
+        MaterialSlotName = Glass
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2366.91, 5241.66, 0, 0 }
+        }
+    }
+    StaticMaterials[5] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/CityNM/Material/M_City_Wall_NIghtmare_Pillar_02.M_City_Wall_NIghtmare_Pillar_02'
+        MaterialSlotName = Pillar
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2185.57, 5730.5, 0, 0 }
+        }
+    }
+    StaticMaterials[6] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_Wall_Brick.M_City_Wall_Brick'
+        MaterialSlotName = Brick
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 921.514, 5466.77, 0, 0 }
+        }
+    }
+    StaticMaterials[7] =
+    {
+        MaterialInterface = MaterialInstanceConstant'/Game/Environment/Assets/City/Material/M_City_White.M_City_White'
+        MaterialSlotName = White
+        UVChannelData =
+        {
+            bInitialized = true
+            bOverrideDensities = false
+            LocalUVDensities[4] = { 2910.63, 5628.71, 0, 0 }
+        }
+    }
+}
+Sockets[0] = {}
+ExtendedBounds =
+{
+    Origin = { X=-429.061, Y=-732.907, Z=1437.51 }
+    BoxExtent = { X=834.329, Y=1138.17, Z=1509.73 }
+    SphereRadius = 2010.84
+}
