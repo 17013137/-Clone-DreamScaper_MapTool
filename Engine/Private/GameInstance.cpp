@@ -290,7 +290,11 @@ HRESULT CGameInstance::Add_Lights(ID3D11Device * pDevice, ID3D11DeviceContext * 
 
 _bool CGameInstance::isInFrustum_WorldSpace(_vector vWorldPos, _float fRange)
 {
-	return _bool();
+
+	if (nullptr == m_pFrustum)
+		return false;
+
+	return m_pFrustum->isIn_WorldSpace(vWorldPos, fRange);
 }
 
 const _float3 & CGameInstance::Get_WorldRay()

@@ -126,6 +126,8 @@ HRESULT CLevel_GamePlay::Ready_Layer_Player(const _tchar * pLayerTag)
 
 	pGameInstance->Add_GameObjectToLayer(LEVEL_GAMEPLAY, L"Temp", L"Prototype_GameObject_AllObject");
 
+	pGameInstance->Add_GameObjectToLayer(LEVEL_GAMEPLAY, L"Temp", L"Prototype_GameObject_Land");
+
 	Safe_Release(pGameInstance);
 
 	return S_OK;

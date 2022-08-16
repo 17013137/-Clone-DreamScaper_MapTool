@@ -160,7 +160,7 @@ technique11 DefaultTechnique
 	//0
 	pass Model
 	{
-		SetRasterizerState(RS_Default);
+		SetRasterizerState(RS_Cull_NON);
 		SetDepthStencilState(DSS_Default, 0);
 		SetBlendState(BS_NonBlend, vector(1.f, 1.f, 1.f, 1.f), 0xffffffff);
 

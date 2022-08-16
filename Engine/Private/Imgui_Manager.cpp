@@ -89,24 +89,23 @@ void CImgui_Manager::MapMenu_Contents()
 		if (ImGui::TreeNode("Tile")) {
 
 			if (ImGui::ListBox(".", &m_TileCnt, TileList, IM_ARRAYSIZE(TileList), 2)) {
-				m_ObjectCnt = -1;
-				m_SelPortal = -1;
+				SetUp_ListBoxCount(&m_TileCnt);
 				m_Navimode = false;
 			}
 
 			ImGui::TreePop();
 		}
 
-		if (ImGui::TreeNode("Object")) {
+		if (ImGui::TreeNode("Land")) {
+
 			ImGui::BeginListBox(".");
 
 			int SelCnt = 0;
-			for (auto& iter : m_ObjListBox) {
+			for (auto& iter : m_LandTagList) {
 				if (ImGui::Selectable(iter.Name, &iter.is_Selected)) {
-					m_ObjectCnt = SelCnt;
+					m_LandCnt = SelCnt;
 					iter.is_Selected = true;
-					m_TileCnt = -1;
-					m_SelPortal = -1;
+					SetUp_ListBoxCount(&m_LandCnt);
 					m_Navimode = false;
 					break;
 				}
@@ -114,7 +113,34 @@ void CImgui_Manager::MapMenu_Contents()
 			}
 			
 			int i = 0;
-			for (auto& iter : m_ObjListBox) {
+			for (auto& iter : m_LandTagList) {
+				if (i != m_LandCnt) {
+					iter.is_Selected = false;
+				}
+				i++;
+			}
+
+			ImGui::EndListBox();
+			ImGui::TreePop();
+		}
+
+		if (ImGui::TreeNode("Object")) {
+			ImGui::BeginListBox(".");
+
+			int SelCnt = 0;
+			for (auto& iter : m_ObjTagList) {
+				if (ImGui::Selectable(iter.Name, &iter.is_Selected, 0)) {
+					m_ObjectCnt = SelCnt;
+					iter.is_Selected = true;
+					SetUp_ListBoxCount(&m_ObjectCnt);
+					m_Navimode = false;
+					break;
+				}
+				SelCnt++;
+			}
+			
+			int i = 0;
+			for (auto& iter : m_ObjTagList) {
 				if (i != m_ObjectCnt) {
 					iter.is_Selected = false;
 				}
@@ -122,11 +148,6 @@ void CImgui_Manager::MapMenu_Contents()
 			}
 
 			ImGui::EndListBox();
-
-
-			//ImGui::PushItemWidth();
-			//if (ImGui::ListBox(".", &m_ObjectCnt, PrototypeList, IM_ARRAYSIZE(PrototypeList), 10)) {
-			
 			ImGui::TreePop();
 		}
 		
@@ -159,13 +180,12 @@ void CImgui_Manager::MapMenu_Contents()
 
 			if (ImGui::ListBox(".", &m_SelPortal, PortalList, IM_ARRAYSIZE(PortalList), 5)) {
 				m_Navimode = false;
-				m_TileCnt = -1;
-				m_ObjectCnt = -1;
+				SetUp_ListBoxCount(&m_SelPortal);
 			}
 			ImGui::TreePop();
 		}
 
-		
+		ImGui::SliderInt("Set Stage", &m_StageIndex, 0, 5);
 		if (ImGui::Button("Save", ImVec2(50, 20)))
 			SaveData();
 
@@ -189,11 +209,10 @@ void CImgui_Manager::MapMenu_Contents()
 void CImgui_Manager::Create_Object()
 {
 	m_NextPick = false;
-	if (m_ObjectCnt < 0 && m_TileCnt < 0 && m_SelPortal < 0)
+	if (m_ObjectCnt < 0 && m_TileCnt < 0 && m_SelPortal < 0 && m_LandCnt < 0)
 		return;
 
-	int index = max(m_ObjectCnt, m_TileCnt);
-	index = max(index, m_SelPortal);
+	int index = max( max(m_ObjectCnt, m_SelPortal), max(m_LandCnt, m_TileCnt));
 
 	if (GetAsyncKeyState(VK_LBUTTON) & 0x0001) {
 		m_NextPick = ObjectPicking();
@@ -218,9 +237,8 @@ _bool CImgui_Manager::ObjectPicking()
 			m_PickObj = iter->Object;
 
 			flag = true;
+			SetUp_ListBoxCount(&m_ObjectCnt);
 			m_ObjectCnt = iter->TagIndex;
-			m_TileCnt = -1;
-			m_SelPortal = -1;
 		}
 		else {
 			CollideSphere->Set_isCollison(false);
@@ -228,26 +246,47 @@ _bool CImgui_Manager::ObjectPicking()
 		}
 	}
 
-//	for (auto& iter : m_TileList) {
-//		CCollider* CollideSphere = (CCollider*)iter->Object->Get_Component(L"Com_Sphere");
-//		if (CollideSphere == nullptr)
-//			continue;
-//	
-//		if (XMVectorGetX(XMVector3Length(CollideSphere->Intersect_Ray()))) {
-//			CollideSphere->Set_isCollison(true);
-//			CollideSphere->Set_Color(_float3(1.f, 0.f, 0.f));
-//			m_PickObj = iter->Object;
-//	
-//			flag = true;
-//			m_ObjectCnt = -1;
-//			m_TileCnt = iter->TagIndex;
-//			m_SelPortal = -1;
-//		}
-//		else {
-//			CollideSphere->Set_isCollison(false);
-//			CollideSphere->Set_Color(_float3(0.f, 1.f, 0.f));
-//		}
-//	}
+	for (auto& iter : m_LandList) {
+		CCollider* CollideSphere = (CCollider*)iter->Object->Get_Component(L"Com_Sphere");
+		if (CollideSphere == nullptr)
+			continue;
+
+		if (XMVectorGetX(XMVector3Length(CollideSphere->Intersect_Ray()))) {
+			CollideSphere->Set_isCollison(true);
+			CollideSphere->Set_Color(_float3(1.f, 0.f, 0.f));
+			m_PickObj = iter->Object;
+
+			flag = true;
+			SetUp_ListBoxCount(&m_LandCnt);
+			m_LandCnt = iter->TagIndex;
+		}
+		else {
+			CollideSphere->Set_isCollison(false);
+			CollideSphere->Set_Color(_float3(0.f, 1.f, 0.f));
+		}
+	}
+
+	if (m_TileCnt >= 0) {
+		for (auto& iter : m_TileList) {
+			CCollider* CollideSphere = (CCollider*)iter->Object->Get_Component(L"Com_Sphere");
+			if (CollideSphere == nullptr)
+				continue;
+		
+			if (XMVectorGetX(XMVector3Length(CollideSphere->Intersect_Ray()))) {
+				CollideSphere->Set_isCollison(true);
+				CollideSphere->Set_Color(_float3(1.f, 0.f, 0.f));
+				m_PickObj = iter->Object;
+		
+				flag = true;
+				SetUp_ListBoxCount(&m_TileCnt);
+				m_TileCnt = iter->TagIndex;
+			}
+			else {
+				CollideSphere->Set_isCollison(false);
+				CollideSphere->Set_Color(_float3(0.f, 1.f, 0.f));
+			}
+		}
+	}
 
 	for (auto& iter : m_PortalList) {
 		CCollider* CollideSphere = (CCollider*)iter->Object->Get_Component(L"Com_Sphere");
@@ -260,8 +299,7 @@ _bool CImgui_Manager::ObjectPicking()
 			m_PickObj = iter->Object;
 
 			flag = true;
-			m_ObjectCnt = -1;
-			m_TileCnt = -1;
+			SetUp_ListBoxCount(&m_SelPortal);
 			m_SelPortal = iter->TagIndex;
 		}
 		else {
@@ -297,10 +335,12 @@ _bool CImgui_Manager::TilePicking(_int index)
 		if (m_ObjectCnt >= 0 && m_TileList.size() > 0)
 			Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"Object", L"Prototype_GameObject_AllObject", &index);
 		else if (m_TileCnt >= 0)
-			Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"LandScape", L"Prototype_GameObject_LandScape", &index);
-		else if (m_SelPortal >= 0) {
+			Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"LandScape", L"Prototype_GameObject_BaseTile", &index);
+		else if (m_SelPortal >= 0)
 			Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"Portal", L"Prototype_GameObject_Portal", &index);
-		}
+		else if (m_LandCnt >= 0)
+			Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"Land", L"Prototype_GameObject_Land", &index);
+
 		if (Obj != nullptr) {
 			CTransform* ObjTrans = Obj->Get_Transform();
 			PickedPos = XMVectorSetW(PickedPos, 1.f);
@@ -309,7 +349,7 @@ _bool CImgui_Manager::TilePicking(_int index)
 			Datadesc->Object = Obj;
 			Datadesc->TagIndex = index;
 			Datadesc->Number = 0;
-			if (m_ObjectCnt >= 0) {
+			if (m_ObjectCnt >= 0 || m_LandCnt >= 0) {
 				_float ResultDist = (_float)INT_MAX;
 				int ResultTileIndex = 0;
 
@@ -322,7 +362,10 @@ _bool CImgui_Manager::TilePicking(_int index)
 					}
 				}
 				Datadesc->Number = ResultTileIndex;
-				m_ObjectList.push_back(Datadesc);
+				if (m_ObjectCnt >= 0)
+					m_ObjectList.push_back(Datadesc);
+				else
+					m_LandList.push_back(Datadesc);
 			}
 			else if (m_TileCnt >= 0) {
 				Datadesc->Number = m_TileNumber;
@@ -383,6 +426,16 @@ void CImgui_Manager::Remote_PickObj()
 			for (auto&iter : m_ObjectList) {
 				if (iter->Object == Temp) {
 					m_ObjectList.erase(m_ObjectList.begin() + i);
+					break;
+				}
+				else
+					i++;
+			}
+		}
+		if (m_LandCnt >= 0) {
+			for (auto&iter : m_LandList) {
+				if (iter->Object == Temp) {
+					m_LandList.erase(m_LandList.begin() + i);
 					break;
 				}
 				else
@@ -697,6 +750,34 @@ _bool CImgui_Manager::Push_SavePortal()
 	return false;
 }
 
+void CImgui_Manager::SetUp_ListBoxCount(_int * flag)
+{
+	if (flag == &m_ObjectCnt) {
+		m_TileCnt = -1;
+		m_SelPortal = -1;
+		m_LandCnt = -1;
+	}
+
+	if (flag == &m_TileCnt) {
+		m_SelPortal = -1;
+		m_LandCnt = -1;
+		m_ObjectCnt = -1;
+	}
+
+	if (flag == &m_SelPortal) {
+		m_TileCnt = -1;
+		m_LandCnt = -1;
+		m_ObjectCnt = -1;
+	}
+
+	if (flag == &m_LandCnt) {
+		m_SelPortal = -1;
+		m_TileCnt = -1;
+		m_ObjectCnt = -1;
+	}
+
+}
+
 _bool CImgui_Manager::SaveData()
 {
 	_ulong		dwByte = 0;
@@ -720,16 +801,15 @@ _bool CImgui_Manager::SaveData()
 	LOADDATA LoadData;
 	LoadData.TileCnt = m_TileList.size();
 	LoadData.ObjCnt = m_ObjectList.size();
+	LoadData.LandCnt = m_LandList.size();
 	LoadData.PortalCnt = m_SavePortalList.size();
 	WriteFile(hFile, &(LoadData), sizeof(LOADDATA), &dwByte, nullptr);
 
 	for (auto iter : m_TileList) {
 		SAVETILE SaveDesc;
-
 		SaveDesc.TagIndex = iter->TagIndex;
 		SaveDesc.Number = iter->Number;
 		SaveDesc.WorldMtx = iter->Object->Get_Transform()->Get_WorldFloat4x4();
-
 		WriteFile(hFile, &(SaveDesc), sizeof(SAVETILE), &dwByte, nullptr);
 	}
 
@@ -739,7 +819,17 @@ _bool CImgui_Manager::SaveData()
 
 	for (auto iter : m_ObjectList) {
 		SAVEDESC SaveDesc;
+		SaveDesc.StageIndex = m_StageIndex;
+		SaveDesc.TagIndex = iter->TagIndex;
+		SaveDesc.Number = iter->Number;
+		SaveDesc.WorldMtx = iter->Object->Get_Transform()->Get_WorldFloat4x4();
 
+		WriteFile(hFile, &(SaveDesc), sizeof(SAVEDESC), &dwByte, nullptr);
+	}
+
+	for (auto iter : m_LandList) {
+		SAVEDESC SaveDesc;
+		SaveDesc.StageIndex = m_StageIndex;
 		SaveDesc.TagIndex = iter->TagIndex;
 		SaveDesc.Number = iter->Number;
 		SaveDesc.WorldMtx = iter->Object->Get_Transform()->Get_WorldFloat4x4();
@@ -781,14 +871,14 @@ _bool CImgui_Manager::LoadData()
 		ReadFile(hFile, &SaveTile, sizeof(SAVETILE), &dwByte, nullptr);
 		if (0 == dwByte)
 			break;
-
-		CGameObject* Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"LandScape", L"Prototype_GameObject_LandScape", &SaveTile.TagIndex);
+		
+		CGameObject* Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"LandScape", L"Prototype_GameObject_BaseTile", &SaveTile.TagIndex);
 
 		DATADESC* Data = new DATADESC;
 		Data->TagIndex = SaveTile.TagIndex;
 		Data->Number = SaveTile.Number;
 		Data->Object = Obj;
-		m_TileNumber = Data->Number+1;
+		m_TileNumber = Data->Number;
 		Obj->Get_Transform()->Set_WorldMTX(SaveTile.WorldMtx);
 
 		m_TileList.push_back(Data);
@@ -799,16 +889,16 @@ _bool CImgui_Manager::LoadData()
 		ReadFile(hFile, &SavePortal, sizeof(SAVEPORTAL), &dwByte, nullptr);
 		if (0 == dwByte)
 			break;
-
+	
 		m_SavePortalList.push_back(SavePortal);
-
+			
 		CGameObject* Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"Portal", L"Prototype_GameObject_Portal", &SavePortal.TagIndex);
 		DATADESC* Data = new DATADESC;
 		Data->TagIndex = SavePortal.TagIndex;
 		Data->Number = SavePortal.TileIndex;
 		Data->Object = Obj;
 		Obj->Get_Transform()->Set_WorldMTX(SavePortal.WorldMtx);
-
+		
 		m_PortalList.push_back(Data);
 	}
 
@@ -819,7 +909,6 @@ _bool CImgui_Manager::LoadData()
 		ReadFile(hFile, &SaveData, sizeof(SAVEDESC), &dwByte, nullptr);
 		if (0 == dwByte)
 			break;
-
 		CGameObject* Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"Object", L"Prototype_GameObject_AllObject", &SaveData.TagIndex);
 
 		DATADESC* Data = new DATADESC;
@@ -832,6 +921,25 @@ _bool CImgui_Manager::LoadData()
 		m_ObjectList.push_back(Data);
 	}
 
+	for (int i = 0; i < LoadData.LandCnt; i++)
+	{
+		SAVEDESC SaveData;
+
+		ReadFile(hFile, &SaveData, sizeof(SAVEDESC), &dwByte, nullptr);
+		if (0 == dwByte)
+			break;
+
+		CGameObject* Obj = CObject_Manager::GetInstance()->Add_GameObjToLayer(3, L"Land", L"Prototype_GameObject_Land", &SaveData.TagIndex);
+
+		DATADESC* Data = new DATADESC;
+		Data->TagIndex = SaveData.TagIndex;
+		Data->Number = SaveData.Number;
+		Data->Object = Obj;
+
+		Obj->Get_Transform()->Set_WorldMTX(SaveData.WorldMtx);
+
+		m_LandList.push_back(Data);
+	}
 	CloseHandle(hFile);
 
 	MSGBOX("SUCCESS !!");

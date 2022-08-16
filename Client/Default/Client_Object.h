@@ -8,5 +8,6 @@
 #include "Bed.h"
 #include "NaviFlag.h"
 #include "AllObject.h"
-#include "LandScape.h"
+#include "BaseTile.h"
 #include "Portal.h"
+#include "Land.h"

@@ -23,6 +23,7 @@ public:
 
 	typedef struct LOADDATA {
 		int TileCnt;
+		int LandCnt;
 		int ObjCnt;
 		int PortalCnt;
 	}LOADDATA;
@@ -36,6 +37,7 @@ public:
 	typedef struct SAVEDESC {
 		_uint TagIndex;
 		_uint Number;
+		_uint StageIndex;
 		XMFLOAT4X4 WorldMtx;
 	}SAVEDESC;
 	
@@ -98,21 +100,40 @@ public:
 	//포탈관련함수
 	void SetUp_PortalData(DATADESC* Portal);
 	_bool Push_SavePortal();
+
+	void SetUp_ListBoxCount(_int* flag);
 private:
 	_bool Navi_Create();
 
 public:
 	bool m_bImguiEnable = false;
-	_bool m_NextPick = false;
 	CGameObject* m_PickObj = nullptr;
-	vector<DATADESC*> m_ObjectList;
+	_int m_StageIndex = 0;
+
+	//BaseTile
 	vector<DATADESC*> m_TileList;
-	vector<Item> m_ObjListBox;
 	_int m_TileCnt = -1;
-	_int m_ObjectCnt = -1;
 	_int m_TileNumber = 0;
 
-	//네비
+	//AllObject
+	_bool m_NextPick = false;
+	vector<Item> m_ObjTagList;
+	vector<DATADESC*> m_ObjectList;
+	_int m_ObjectCnt = -1;
+
+	//Land
+	vector<DATADESC*> m_LandList;
+	vector<Item> m_LandTagList;
+	_int m_LandCnt = 0;
+
+	//Portal
+	vector<DATADESC*> m_PortalList;
+	vector<SAVEPORTAL> m_SavePortalList;
+	_int m_SelPortal = -1;
+	_int m_PortalCnt = 0;
+	LINKPORTAL m_LinkDesc;
+
+	//Navi
 	_bool m_Navimode = false;
 	_uint m_NaviCount = 0;
 	CGameObject* m_PickNavi = nullptr;
@@ -121,14 +142,6 @@ public:
 	CELLDESC m_Point = { _float3() };
 	_int m_CellType = 0;
 
-	//포탈관련
-	vector<DATADESC*> m_PortalList;
-	vector<SAVEPORTAL> m_SavePortalList;
-	_int m_SelPortal = -1;
-	_int m_PortalCnt = 0;
-	LINKPORTAL m_LinkDesc;
-
-	_bool m_isOpenNode = false;
 public:
 	void OnOffImgui(void) { m_bImguiEnable = !m_bImguiEnable; }
 	bool isImguiEnable() { return m_bImguiEnable; }

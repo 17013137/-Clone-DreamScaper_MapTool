@@ -2,6 +2,7 @@
 
 #include "GameInstance.h"
 #include "Level_Manager.h"
+#include "Frustum.h"
 
 const _tchar*	CGameObject::m_pTransformTag = TEXT("Com_Transform");
 
@@ -50,8 +51,8 @@ _int CGameObject::Tick(_double TimeDelta)
 {
 	if (true == m_Dead)
 		return 1;
-	if (m_Culling == true)
-		return 0;
+
+	m_Culling = CFrustum::GetInstance()->isIn_WorldSpace(m_pTransformCom->Get_State(CTransform::STATE_POSITION), 1.f);
 
 	return 0;
 }

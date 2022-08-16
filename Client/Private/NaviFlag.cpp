@@ -53,7 +53,7 @@ void CNaviFlag::LateTick(_double TimeDelta)
 {
 	__super::LateTick(TimeDelta);
 
-	if (nullptr != m_pRendererCom)
+	if (nullptr != m_pRendererCom&& m_Culling == true)
 		m_pRendererCom->Add_RenderGroup(CRenderer::GROUP_NONBLEND, this);
 }
 
@@ -64,9 +64,6 @@ HRESULT CNaviFlag::Render()
 		return E_FAIL;
 	
 	if (FAILED(__super::Render()))
-		return S_OK;
-
-	if (m_Culling == true)
 		return S_OK;
 
 	//if (FAILED(SetUp_ConstantTable()))

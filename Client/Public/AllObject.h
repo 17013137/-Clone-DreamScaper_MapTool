@@ -36,12 +36,14 @@ private:
 	CCollider*			m_pSphereCom = nullptr;
 	CRenderer*			m_pRendererCom = nullptr;
 	CShader*			m_pShaderCom = nullptr;	
+	
+private:
+	HRESULT Using_Stage1();
+	//HRESULT Using_Stage2();
+	//HRESULT Using_Stage3();
 
 private:
-	vector<CModel> Stage1;
-	vector<CModel> Stage2;
-	vector<CModel> Stage3;
-	vector<CModel*>* m_Models;
+	vector<CModel*> m_Models;
 	vector<char*> m_NameTag;
 
 private:

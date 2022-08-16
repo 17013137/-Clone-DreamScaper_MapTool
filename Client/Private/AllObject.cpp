@@ -41,19 +41,19 @@ HRESULT CAllObject::NativeConstruct(void * pArg)
 		memcpy(&m_ModelIndex, pArg, sizeof(int));
 	}
 	
-	for (auto* iter : m_Models[m_LevelIndex]) {
+	for (auto& iter : m_Models) {
 		m_NameTag.push_back(iter->Get_FileName());
 	}
 
-	if (CImgui_Manager::GetInstance()->m_ObjListBox.size() == 0) {
+	if (CImgui_Manager::GetInstance()->m_ObjTagList.size() == 0) {
 		for (auto& iter : m_NameTag) {
 			CImgui_Manager::Item item;
 			strcpy_s(item.Name, iter);
 			item.is_Selected = false;
-			CImgui_Manager::GetInstance()->m_ObjListBox.push_back(item);
+			CImgui_Manager::GetInstance()->m_ObjTagList.push_back(item);
 		}
 		
-		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(-5.f, 0.f, -5.f, 0.f));
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, XMVectorSet(-50.f, 0.f, -50.f, 0.f));
 	}
 
 	return S_OK;
@@ -75,7 +75,7 @@ void CAllObject::LateTick(_double TimeDelta)
 {
 	__super::LateTick(TimeDelta);
 
-	if (nullptr != m_pRendererCom)
+	if (nullptr != m_pRendererCom && m_Culling == true)
 	{
 		m_pRendererCom->Add_RenderGroup(CRenderer::GROUP_NONBLEND, this);
 
@@ -112,6 +112,141 @@ HRESULT CAllObject::Render()
 	return S_OK;
 }
 
+HRESULT CAllObject::Using_Stage1()
+{
+	CModel* ComModel = nullptr;
+
+	if (FAILED(__super::SetUp_Components(TEXT("Model0"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Grass"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+
+	if (FAILED(__super::SetUp_Components(TEXT("Model1"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_SnowGrass"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+
+	if (FAILED(__super::SetUp_Components(TEXT("Model2"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Snow_Tree_Pine_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+
+	if (FAILED(__super::SetUp_Components(TEXT("Model3"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Tree_Pine_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+
+	if (FAILED(__super::SetUp_Components(TEXT("Model4"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Dead_HeightTree"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+
+	if (FAILED(__super::SetUp_Components(TEXT("Model5"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Dead_Tree_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+
+	if (FAILED(__super::SetUp_Components(TEXT("Model6"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Dead_Tree_04"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+
+	if (FAILED(__super::SetUp_Components(TEXT("Model7"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Dead_Tree_Snow04"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+
+	if (FAILED(__super::SetUp_Components(TEXT("Model8"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fence_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+
+	if (FAILED(__super::SetUp_Components(TEXT("Model9"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fence_02"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model10"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fence_03"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model12"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_StartHouse"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model13"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_StationWagon_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model14"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_StationWagon_Sedan_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model15"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Church"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model16"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_House_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model17"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_StationWagon_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model18"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_StationWagon_Sedan_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model19"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Church"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model20"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_UtillityPole_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model21"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_UtillityPole_01_Broken"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model22"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Farm_Silo"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model23"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Farm_Silo2"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model24"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Farm_WaterTank"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model25"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Farm_Windmill"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model26"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Farm_HayBale_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model27"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Tree_Fallen_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model28"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_BurgerHouse"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model29"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_PuzzleMap"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model30"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_BossMapObj"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model31"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_GrassStack"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model32"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Farm_HayBale_Stack_01"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model33"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Bridge_FencRope"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model34"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fence1"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model35"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fence2"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model36"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Bridge_Rope"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model37"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Merchant"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model38"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Merchant_Bridge"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model39"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Merchant_Emissive"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+
+
+	return S_OK;
+}
+
 HRESULT CAllObject::SetUp_Components()
 {
 	/* For.Com_Renderer */
@@ -125,304 +260,16 @@ HRESULT CAllObject::SetUp_Components()
 	ZeroMemory(&ColliderDesc, sizeof(CCollider::COLLIDERDESC));
 
 	/* For.Com_AABB */
-	ColliderDesc.vPosition = _float3(0.f, 0.0f, 0.f);
-	ColliderDesc.fRadius = 3.f;
+	ColliderDesc.vPosition = _float3(0.f, 3.f, 0.f);
+	ColliderDesc.fRadius = 1.5f;
 	if (FAILED(__super::SetUp_Components(TEXT("Com_Sphere"), LEVEL_STATIC, TEXT("Prototype_Component_Collider_SPHERE"), (CComponent**)&m_pSphereCom, &ColliderDesc)))
 		return E_FAIL;
-	
-	CModel* ComModel = nullptr;
+		
+	if (FAILED(Using_Stage1()))
+		return E_FAIL;
 
 	// LEVEL_GAMEPLAY -> Current LevelIndex·Î
 	
-	/* For.Com_Model */
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_GarbageCan"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_GarbageCan"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-#pragma region Road
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_CampgroundRoad"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_CampgroundRoad"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_ParkingRoad"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_ParkingRoad"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Road0"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Road0"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Road1"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Road1"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Road2"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Road2"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Road3"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Road3"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-#pragma endregion Road
-#pragma region Tree
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Birch_Tree_01"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Birch_Tree_01"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Birch_Tree_02"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Birch_Tree_02"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Birch_Tree_03"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Birch_Tree_03"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Birch_Tree_04"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Birch_Tree_04"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Birch_Tree_05"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Birch_Tree_05"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Dead_Tree_02"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Dead_Tree_02"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Dead_Tree_03"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Dead_Tree_03"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Dynamic_Tree_04"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Dynamic_Tree_04"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Dynamic_Tree_05"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Dynamic_Tree_05"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Dynamic_Tree_06"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Dynamic_Tree_06"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Dynamic_Tree_07"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Dynamic_Tree_07"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Dynamic_Tree_07b"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Dynamic_Tree_07b"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Fallen_Tree_01"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fallen_Tree_01"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Fallen_Tree_02"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fallen_Tree_02"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Tree_01"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Tree_01"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Tree_02"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Tree_02"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Tree_06"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Tree_06"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Tree_07b"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Tree_07b"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-#pragma endregion Tree
-#pragma region Rock
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Rock_Debris_01"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Rock_Debris_01"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Rock_Debris_02"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Rock_Debris_02"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Rock_Debris_03"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Rock_Debris_03"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Rock_Debris_04"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Rock_Debris_04"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Rock_Debris_05"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Rock_Debris_05"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Rock_Debris_06"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Rock_Debris_06"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Rock_Pile_01"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Rock_Pile_01"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Rock_Pile_02"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Rock_Pile_02"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Rock_Pile_03"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Rock_Pile_03"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-#pragma endregion Rock
-#pragma region LandScape
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Tubing_Landscape"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Tubing_Landscape"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Tubing_Water"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Landscape_Water"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_House0"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_House_00"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_House1"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_House_01"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_House2"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_House_02"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_House3"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_House_04"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_MailBox02"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_MailBox"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-
-#pragma endregion LandScape
-#pragma region 8.11New
-	if (FAILED(__super::SetUp_Components(TEXT("Com_BoatHouse"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_BoatHouse"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Com_BoatHouse_Plane"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_BoatHouse_Plane"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Car_Flat"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Car_Flat"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Car_Sedan"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Car_Sedan"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Car_StationWagon_Sedan"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Car_StationWagon_Sedan"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("ChurchMap"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_ChurchMap"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("_DinerMap"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_DinerMap"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Fence_01"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fence_01"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Fence_02"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fence_02"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Fence_03"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Fence_03"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("GuardRail"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_GuardRail"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Aloe_01"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Aloe_01"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Aloe_03"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Aloe_03"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Aloe_04"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Aloe_04"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Camp_Grass"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_CampGround_Grass"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Grass_Dynamic"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Grass_Dynamic"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Sign_Walking"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Sign_Walking"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Farm_Silo"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Farm_Silo"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("Farm_Silo2"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Farm_Silo2"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("WaterTank"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Farm_WaterTank"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-	if (FAILED(__super::SetUp_Components(TEXT("Windmill"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Farm_Windmill"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-	if (FAILED(__super::SetUp_Components(TEXT("HayBale_01"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_HayBale_01"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-	if (FAILED(__super::SetUp_Components(TEXT("HayBale_Stack"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_HayBale_Stack_01"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-	if (FAILED(__super::SetUp_Components(TEXT("Farm_Road"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Farm_Road"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-	if (FAILED(__super::SetUp_Components(TEXT("Tracter"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Tracter"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-	if (FAILED(__super::SetUp_Components(TEXT("Town_Tree"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Town_Tree"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-
-	if (FAILED(__super::SetUp_Components(TEXT("UtillityPole01"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_UtillityPole_01"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-	if (FAILED(__super::SetUp_Components(TEXT("UtillityPole02"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_UtillityPole_Broken"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-#pragma endregion 8.11New
-#pragma region Bike
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Bicycle0"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Bicycle0"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Bicycle1"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Bicycle1"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-	if (FAILED(__super::SetUp_Components(TEXT("Com_Model_Bike"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Bike"), (CComponent**)&ComModel)))
-		return E_FAIL;
-	m_Models.push_back(ComModel);
-#pragma endregion Bike
-
-
 	return S_OK;
 }
 

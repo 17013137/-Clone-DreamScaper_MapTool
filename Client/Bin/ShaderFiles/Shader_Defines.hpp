@@ -22,6 +22,13 @@ RasterizerState	RS_Cull_CW
 	CullMode = front;
 };
 
+RasterizerState	RS_Cull_NON
+{
+	FillMode = Solid;
+FrontCounterClockwise = true;
+CullMode = 1;
+};
+
 DepthStencilState DSS_Default
 {
 	DepthEnable = true;
