@@ -36,12 +36,6 @@ HRESULT CGameObject::NativeConstruct(void * pArg, CTransform::TRANSFORMDESC* pTr
 
 	m_iLevelIndex = CLevel_Manager::GetInstance()->Get_CurrentLevelIndex();
 
-	//if (pArg != nullptr) {
-	//	_float4x4 WorldMtx = _float4x4();
-	//	memcpy(&WorldMtx, pArg, sizeof(_float4x4));
-	//	m_pTransformCom->Set_WorldMTX(WorldMtx);
-	//}
-
 	Safe_AddRef(m_pTransformCom);
 
 	return S_OK;
@@ -52,7 +46,7 @@ _int CGameObject::Tick(_double TimeDelta)
 	if (true == m_Dead)
 		return 1;
 
-	m_Culling = CFrustum::GetInstance()->isIn_WorldSpace(m_pTransformCom->Get_State(CTransform::STATE_POSITION), 1.f);
+	m_Culling = CFrustum::GetInstance()->isIn_WorldSpace(m_pTransformCom->Get_State(CTransform::STATE_POSITION), 10.f);
 
 	return 0;
 }

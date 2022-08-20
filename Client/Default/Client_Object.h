@@ -11,3 +11,4 @@
 #include "BaseTile.h"
 #include "Portal.h"
 #include "Land.h"
+#include "Interact.h"

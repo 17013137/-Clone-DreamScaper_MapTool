@@ -26,6 +26,7 @@ public:
 		int LandCnt;
 		int ObjCnt;
 		int PortalCnt;
+		int InteractCnt;
 	}LOADDATA;
 
 	typedef struct DATADESC {
@@ -95,6 +96,7 @@ public:
 	void Undo_NaviBox();
 	_bool SaveNavi();
 	_bool LoadNavi();
+	_bool CellPicking();
 
 
 	//포탈관련함수
@@ -132,6 +134,11 @@ public:
 	_int m_SelPortal = -1;
 	_int m_PortalCnt = 0;
 	LINKPORTAL m_LinkDesc;
+
+	//InteractObject
+	vector<DATADESC*> m_Interact;
+	vector<Item> m_InteractTag;
+	_int m_InteractCnt = 0;
 
 	//Navi
 	_bool m_Navimode = false;

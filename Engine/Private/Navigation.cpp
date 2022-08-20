@@ -6,6 +6,7 @@
 #include "Object_Manager.h"
 #include "GameInstance.h"
 #include "GameObject.h"
+#include "Picking.h"
 
 IMPLEMENT_SINGLETON(CNavigation)
 
@@ -235,6 +236,16 @@ HRESULT CNavigation::Remove_LastCell()
 	}
 
 	return S_OK;
+}
+
+CCell * CNavigation::Get_PickingCell()
+{
+	for (auto& iter : m_Cells) {
+
+
+	}
+
+	return nullptr;
 }
 
 #endif // _DEBUG

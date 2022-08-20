@@ -29,6 +29,7 @@ public:
 	HRESULT NativeConstruct(CELLDESC* CellDesc, _int iIndex);
 	_bool isIn(_float3* vPosition, _fmatrix WorldMatrix, _int* pNeighborIndex, _fvector PlayerDir, _bool isJump = false);
 	_int isOn(_fvector vPosition, _fmatrix WorldMatrix, _int* pNeighborIndex);
+	_bool isOn(_fvector vPosition, _fmatrix WorldMatrix);
 	_bool Compare_Points(_vector vSour, _vector vDest);
 
 #ifdef _DEBUG

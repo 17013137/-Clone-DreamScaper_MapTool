@@ -88,6 +88,9 @@
     <Filter Include="02. GameObject\04.MapObject\Land">
       <UniqueIdentifier>{5862e21c-0f39-475d-aad9-6fa4d8eaa6fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. GameObject\04.MapObject\Interact">
+      <UniqueIdentifier>{0c04c432-8f44-44de-a2cf-2228a2b4ff9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -174,6 +177,9 @@
     <ClInclude Include="..\Public\AllObject.h">
       <Filter>02. GameObject\04.MapObject\AllObjects</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\Interact.h">
+      <Filter>02. GameObject\04.MapObject\Interact</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
@@ -241,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="..\Private\AllObject.cpp">
       <Filter>02. GameObject\04.MapObject\AllObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\Interact.cpp">
+      <Filter>02. GameObject\04.MapObject\Interact</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

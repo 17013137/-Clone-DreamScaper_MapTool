@@ -203,6 +203,41 @@ _int CCell::isOn(_fvector vPosition, _fmatrix WorldMatrix, _int * pNeighborIndex
 	return 0;
 }
 
+_bool CCell::isOn(_fvector vPosition, _fmatrix WorldMatrix)
+{
+	_vector vPos = vPosition;
+	_vector	vPointInWorld[POINT_END + 1];
+
+	for (_uint i = 0; i < POINT_END; ++i)
+		vPointInWorld[i] = XMVector3TransformCoord(XMLoadFloat3(&m_vPoint[i]), WorldMatrix);
+	vPointInWorld[POINT_END] = vPointInWorld[0];
+
+	_vector vPlane = XMPlaneFromPoints(vPointInWorld[0], vPointInWorld[1], vPointInWorld[2]);
+	_float4 fPlane; XMStoreFloat4(&fPlane, vPlane);
+
+	for (_uint i = 0; i < POINT_END; ++i)
+		vPointInWorld[i] = XMVectorSetY(vPointInWorld[i], 0.f);
+
+	vPos = XMVectorSetY(vPos, 0.f);
+
+	_vector		vLine[LINE_END];
+
+	for (_uint i = 0; i < LINE_END; ++i)
+	{
+		vLine[i] = vPointInWorld[i + 1] - vPointInWorld[i];
+
+		_vector vNormal = XMVector3Normalize(XMVectorSet(XMVectorGetZ(vLine[i]) * -1.f, 0.f, XMVectorGetX(vLine[i]), 0.f));
+		_vector vDir = XMVector3Normalize(vPos - vPointInWorld[i]);
+
+		if (0 < XMVectorGetX(XMVector3Dot(vNormal, vDir)))
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
 _bool CCell::Compare_Points(_vector vSour, _vector vDest)
 {
 	if (true == XMVector3Equal(vSour, XMLoadFloat3(&m_vPoint[POINT_A])))
