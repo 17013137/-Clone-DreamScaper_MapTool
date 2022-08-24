@@ -9,6 +9,7 @@
 #include "GameObject.h"
 #include "Navigation.h"
 #include "Cell.h"
+#include "Picking.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -557,18 +558,35 @@ void CImgui_Manager::NaviMenu_Contents()
 
 		if (m_Navimode == true) {
 			if (GetAsyncKeyState(VK_LBUTTON) & 0x0001) {
-
-				Navi_Create();
+				if (CellPicking() == false) {
+					Navi_Create();
+					m_SelectCell = nullptr;
+				}
 			}
 
+			if (m_SelectCell != nullptr) {
+				ImGui::Text("CellInfo");
+				ImGui::Combo(" ", &m_CellType, Cell_TypeIndex, IM_ARRAYSIZE(Cell_TypeIndex));
+				ImGui::SameLine(0, 10.f);
+				if (ImGui::Button("Set", ImVec2(50.f, 25.f))) {
+					CELLDESC* celldesc = Get_CellDescToSel();
+					celldesc->Index = m_CellType;
+				}
+
+			}
 			if (GetAsyncKeyState(VK_END) & 0x0001)
 				Push_Cell();
 
-			if (GetAsyncKeyState(VK_DELETE) & 0x0001)
-				Undo_NaviBox();
+			if (GetAsyncKeyState(VK_DELETE) & 0x0001) {
+				if (m_SelectCell != nullptr) {
+					Delete_Sel_Cell();
+				}
+			}
 
 			Remote_Navi();
 		}
+
+		
 
 		if (ImGui::Button("Save", ImVec2(50, 20)))
 			SaveNavi();
@@ -759,13 +777,57 @@ _bool CImgui_Manager::LoadNavi()
 _bool CImgui_Manager::CellPicking()
 {
 	vector<CCell*> Cells = CNavigation::GetInstance()->Get_Cells();
+	_vector Ray = XMLoadFloat3(&CPicking::GetInstance()->Get_WorldRay());
+	_vector RayPos = XMLoadFloat3(&CPicking::GetInstance()->Get_WorldRayPos());
 
 	for (auto& iter : Cells) {
-
+		if (iter->IntersectTriangle(Ray, RayPos) == true) {
+			iter->Set_Color(_float4(1.f, 0.f, 0.f, 1.f));
+			m_SelectCell = iter;
+		}
+		else
+			iter->Set_Color(_float4(0.f, 1.f, 0.f, 1.f));
 	}
 
 
 	return true;
+}
+
+CELLDESC * CImgui_Manager::Get_CellDescToSel()
+{
+	if (m_SelectCell == nullptr)
+		return nullptr;
+
+	for (auto& iter : m_Cell) {
+		_vector vPoint[3] = { XMLoadFloat3(&iter.PointA), XMLoadFloat3(&iter.PointB), XMLoadFloat3(&iter.PointC) };
+		if (XMVectorGetX(XMVectorEqual(m_SelectCell->Get_Point(0), vPoint[0])) != 0 || XMVectorGetX(XMVectorEqual(m_SelectCell->Get_Point(0), vPoint[1])) != 0 || XMVectorGetX(XMVectorEqual(m_SelectCell->Get_Point(0), vPoint[2])) != 0) {
+			if (XMVectorGetX(XMVectorEqual(m_SelectCell->Get_Point(1), vPoint[0])) != 0 || XMVectorGetX(XMVectorEqual(m_SelectCell->Get_Point(1), vPoint[1])) != 0 || XMVectorGetX(XMVectorEqual(m_SelectCell->Get_Point(1), vPoint[2])) != 0) {
+				if (XMVectorGetX(XMVectorEqual(m_SelectCell->Get_Point(2), vPoint[0])) != 0 || XMVectorGetX(XMVectorEqual(m_SelectCell->Get_Point(2), vPoint[1])) != 0 || XMVectorGetX(XMVectorEqual(m_SelectCell->Get_Point(2), vPoint[2])) != 0) {
+					return &iter;
+				}
+			}
+		}
+	}
+
+	return nullptr;
+}
+
+void CImgui_Manager::Delete_Sel_Cell()
+{
+	CELLDESC* celldesc = Get_CellDescToSel();
+	if (celldesc == nullptr)
+		return;
+
+	CNavigation::GetInstance()->Remove_SelectCell(m_SelectCell);
+	int i = 0;
+	for (auto& iter : m_Cell) {
+		if (&iter == celldesc) {
+			break;
+		}
+		i++;
+	}
+	m_Cell.erase(m_Cell.begin() + i);
+	m_SelectCell = nullptr;
 }
 
 void CImgui_Manager::SetUp_PortalData(DATADESC* Portal)

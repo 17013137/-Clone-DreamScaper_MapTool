@@ -174,10 +174,10 @@ HRESULT CNavigation::Render()
 	m_pDebugShader->Set_RawValue("g_WorldMatrix", &XMMatrixIdentity(), sizeof(_float4x4));
 	m_pDebugShader->Set_RawValue("g_ViewMatrix", &pPipeLine->Get_TransformFloat4x4_TP(CPipeLine::D3DTS_VIEW), sizeof(_float4x4));
 	m_pDebugShader->Set_RawValue("g_ProjMatrix", &pPipeLine->Get_TransformFloat4x4_TP(CPipeLine::D3DTS_PROJ), sizeof(_float4x4));
-	m_pDebugShader->Set_RawValue("g_vColor", &_float4(0.f, 1.f, 0.f, 1.f), sizeof(_float4));
 
 	for (auto& pCell : m_Cells)
 	{
+		m_pDebugShader->Set_RawValue("g_vColor", &pCell->Get_Color(), sizeof(_float4));
 		if (nullptr != pCell)
 			pCell->Render(m_pDebugShader);
 	}
@@ -234,6 +234,38 @@ HRESULT CNavigation::Remove_LastCell()
 
 		box->Set_Dead();
 	}
+
+	return S_OK;
+}
+
+HRESULT CNavigation::Remove_SelectCell(CCell * Cell)
+{
+	if (m_Cells.size() == 0)
+		return E_FAIL;
+
+	list<CGameObject*>* boxlist = CObject_Manager::GetInstance()->Get_GameObjectList(3, L"NaviFlag");
+	
+	int j = 0;
+
+	for (int k = 0; k < 3; k++) {
+		for (auto& iter : *boxlist) {
+			_bool flag = false;
+			_vector vPos = iter->Get_Transform()->Get_State(CTransform::STATE_POSITION);
+			if (XMVectorGetX(XMVectorEqual(vPos, Cell->Get_Point(k))) != 0) {
+				iter->Set_Dead();
+				break;
+			}
+		}
+	}
+
+	int i = 0;
+	for (auto& iter : m_Cells) {
+		if (iter == Cell)
+			break;
+		i++;
+	}
+
+	m_Cells.erase(m_Cells.begin() + i);
 
 	return S_OK;
 }

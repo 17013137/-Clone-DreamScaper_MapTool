@@ -31,6 +31,9 @@ public:
 	_int isOn(_fvector vPosition, _fmatrix WorldMatrix, _int* pNeighborIndex);
 	_bool isOn(_fvector vPosition, _fmatrix WorldMatrix);
 	_bool Compare_Points(_vector vSour, _vector vDest);
+	_bool IntersectTriangle(_vector RayDir, _vector RayPos);
+	void Set_Color(_float4 flag) { m_Color = flag; }
+	_float4 Get_Color() { return m_Color; }
 
 #ifdef _DEBUG
 public:
@@ -53,7 +56,7 @@ private:
 	_vector				m_Plane;
 
 	_bool m_isCulling = false;
-
+	_float4 m_Color = _float4(0.f, 1.f, 0.f, 1.f);
 #ifdef _DEBUG
 private:
 	class CVIBuffer_Line*		m_pDebugBuffer = nullptr;

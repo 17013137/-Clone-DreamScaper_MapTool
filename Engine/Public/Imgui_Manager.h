@@ -97,8 +97,8 @@ public:
 	_bool SaveNavi();
 	_bool LoadNavi();
 	_bool CellPicking();
-
-
+	CELLDESC* Get_CellDescToSel();
+	void Delete_Sel_Cell();
 	//포탈관련함수
 	void SetUp_PortalData(DATADESC* Portal);
 	_bool Push_SavePortal();
@@ -148,6 +148,7 @@ public:
 	CGameObject* m_CreateNavi[3] = { nullptr };
 	CELLDESC m_Point = { _float3() };
 	_int m_CellType = 0;
+	class CCell* m_SelectCell = nullptr;
 
 public:
 	void OnOffImgui(void) { m_bImguiEnable = !m_bImguiEnable; }

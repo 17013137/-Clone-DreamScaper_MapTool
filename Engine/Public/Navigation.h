@@ -27,6 +27,7 @@ public:
 public:
 	HRESULT Push_Cell(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext, CELLDESC* Cell);
 	HRESULT Remove_LastCell();
+	HRESULT Remove_SelectCell(class CCell* Cell);
 	class CCell* Get_PickingCell();
 	vector<class CCell*> Get_Cells() { return m_Cells; }
 

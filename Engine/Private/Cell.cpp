@@ -270,6 +270,41 @@ _bool CCell::Compare_Points(_vector vSour, _vector vDest)
 	return false;
 }
 
+_bool CCell::IntersectTriangle(_vector RayDir, _vector RayPos)
+{
+	_vector v[3] = { XMLoadFloat3(&m_vPoint[0]), XMLoadFloat3(&m_vPoint[1]) , XMLoadFloat3(&m_vPoint[2]) };
+
+	_vector edge1 = v[1] - v[0];
+	_vector edge2 = v[2] - v[0];
+	float u, x, t;
+
+	_vector pvec = XMVector3Cross(RayDir, edge2);
+	float det = XMVectorGetX(XMVector3Dot(edge1, pvec));
+	_vector tvec;
+
+	if (det > 0)
+		tvec = RayPos - v[0];
+	else {
+		tvec = v[0] - RayPos;
+		det = -det;
+	}
+
+	if (det < 0.0001f)
+		return false;
+
+	u = XMVectorGetX(XMVector3Dot(tvec, pvec));
+	if (u < 0.f || u > det)
+		return false;
+	
+	_vector qvec;
+	qvec = XMVector3Cross(tvec, edge1);
+	x = XMVectorGetX(XMVector3Dot(RayDir, qvec));
+	if (x < 0.f || u + x > det)
+		return false;
+
+	return true;
+}
+
 
 #ifdef _DEBUG
 
