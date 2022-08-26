@@ -558,9 +558,12 @@ void CImgui_Manager::NaviMenu_Contents()
 
 		if (m_Navimode == true) {
 			if (GetAsyncKeyState(VK_LBUTTON) & 0x0001) {
-				if (CellPicking() == false) {
-					Navi_Create();
-					m_SelectCell = nullptr;
+				ImVec2 temp = ImGui::GetMousePos();
+				if (temp.x >= 300.f) {
+					if (CellPicking() == false) {
+						Navi_Create();
+						m_SelectCell = nullptr;
+					}
 				}
 			}
 
@@ -581,7 +584,12 @@ void CImgui_Manager::NaviMenu_Contents()
 				if (m_SelectCell != nullptr) {
 					Delete_Sel_Cell();
 				}
+				else {
+					if(m_Cell.size() > 0)
+						Undo_NaviBox();
+				}
 			}
+
 
 			Remote_Navi();
 		}
@@ -779,10 +787,11 @@ _bool CImgui_Manager::CellPicking()
 	vector<CCell*> Cells = CNavigation::GetInstance()->Get_Cells();
 	_vector Ray = XMLoadFloat3(&CPicking::GetInstance()->Get_WorldRay());
 	_vector RayPos = XMLoadFloat3(&CPicking::GetInstance()->Get_WorldRayPos());
-
+	_bool flag = false;
 	for (auto& iter : Cells) {
 		if (iter->IntersectTriangle(Ray, RayPos) == true) {
 			iter->Set_Color(_float4(1.f, 0.f, 0.f, 1.f));
+			flag = true;
 			m_SelectCell = iter;
 		}
 		else
@@ -790,7 +799,7 @@ _bool CImgui_Manager::CellPicking()
 	}
 
 
-	return true;
+	return flag;
 }
 
 CELLDESC * CImgui_Manager::Get_CellDescToSel()

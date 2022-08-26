@@ -46,7 +46,7 @@ _int CGameObject::Tick(_double TimeDelta)
 	if (true == m_Dead)
 		return 1;
 
-	m_Culling = CFrustum::GetInstance()->isIn_WorldSpace(m_pTransformCom->Get_State(CTransform::STATE_POSITION), 10.f);
+	m_Culling = CFrustum::GetInstance()->isIn_WorldSpace(m_pTransformCom->Get_State(CTransform::STATE_POSITION), 30.f);
 
 	return 0;
 }

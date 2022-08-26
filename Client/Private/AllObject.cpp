@@ -106,7 +106,8 @@ HRESULT CAllObject::Render()
 	}	
 
 #ifdef _DEBUG
-	m_pSphereCom->Render();
+	if(CImgui_Manager::GetInstance()->m_Navimode == false)
+		m_pSphereCom->Render();
 #endif // _DEBUG
 
 	return S_OK;

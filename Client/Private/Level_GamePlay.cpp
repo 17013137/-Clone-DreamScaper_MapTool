@@ -103,7 +103,7 @@ HRESULT CLevel_GamePlay::Ready_Layer_Camera(const _tchar * pLayerTag)
 	CameraDesc.vAt = _float3(0.f, 0.f, 0.f);
 	CameraDesc.vAxisY = _float3(0.f, 1.f, 0.f);
 	CameraDesc.fNear = 0.1f;
-	CameraDesc.fFar = 300.0f;
+	CameraDesc.fFar = 100.0f;
 	CameraDesc.fFovy = XMConvertToRadians(60.0f);
 	CameraDesc.fAspect = (_float)g_iWinCX / g_iWinCY;
 	CameraDesc.pPlayerTrans = (CTransform*)pGameInstance->Get_Component(LEVEL_GAMEPLAY, L"Layer_Player", L"Com_Transform");

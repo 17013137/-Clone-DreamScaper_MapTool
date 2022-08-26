@@ -83,7 +83,8 @@ HRESULT CPortal::Render()
 
 
 #ifdef _DEBUG
-	m_pSphereCom->Render();
+	if (CImgui_Manager::GetInstance()->m_Navimode == false)
+		m_pSphereCom->Render();
 #endif // _DEBUG
 	int temp = 0;
 	if (m_Alpha == 0.5f)

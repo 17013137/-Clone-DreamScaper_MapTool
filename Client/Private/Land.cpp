@@ -78,7 +78,7 @@ void CLand::LateTick(_double TimeDelta)
 
 
 
-	if (nullptr != m_pRendererCom  && m_Culling == true)
+	if (nullptr != m_pRendererCom && m_Culling == true)
 	{
 		m_pRendererCom->Add_RenderGroup(CRenderer::GROUP_NONBLEND, this);
 
@@ -109,7 +109,8 @@ HRESULT CLand::Render()
 	}	
 
 #ifdef _DEBUG
-	m_pSphereCom->Render();
+	if (CImgui_Manager::GetInstance()->m_Navimode == false)
+		m_pSphereCom->Render();
 #endif // _DEBUG
 
 	return S_OK;

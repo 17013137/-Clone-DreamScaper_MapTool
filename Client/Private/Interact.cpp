@@ -104,7 +104,8 @@ HRESULT CInteract::Render()
 	}	
 
 #ifdef _DEBUG
-	m_pSphereCom->Render();
+	if (CImgui_Manager::GetInstance()->m_Navimode == false)
+		m_pSphereCom->Render();
 #endif // _DEBUG
 
 	return S_OK;
@@ -143,6 +144,12 @@ HRESULT CInteract::Using_Stage1()
 		return E_FAIL;
 	m_Models.push_back(ComModel);
 	if (FAILED(__super::SetUp_Components(TEXT("Model9"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Turret_Melee_Arms_Attack"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model10"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_NormalRock"), (CComponent**)&ComModel)))
+		return E_FAIL;
+	m_Models.push_back(ComModel);
+	if (FAILED(__super::SetUp_Components(TEXT("Model11"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_BoomRock"), (CComponent**)&ComModel)))
 		return E_FAIL;
 	m_Models.push_back(ComModel);
 
